@@ -6,7 +6,8 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { RouterProvider } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+//develop branch
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
     <GlobalStyles />
