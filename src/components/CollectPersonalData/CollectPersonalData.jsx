@@ -1,14 +1,17 @@
-import HeaderText from "../common/HeaderText";
+import HeaderBox from "../HeaderBox";
 import Button from "../common/Button";
 import Terms from "../common/Terms";
 import TermsBox from "./TermsBox";
 import styled from "styled-components";
+import { SignUpContext } from "../context/SignUpContext";
+import { useContext } from "react";
+import Header from "../common/Header";
 
 export default function CollectPersonalData() {
   return (
     <>
       <Section>
-        <HeaderText />
+        <Header />
         <Button num={0} />
         <TermsBox />
         <Button num={1} />

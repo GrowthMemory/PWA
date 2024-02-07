@@ -1,26 +1,13 @@
-import { useContext } from "react";
-import { SignUpContext } from "../context/SignUpContext";
+import { Children, useContext } from "react";
+import { SignUpContext } from "./context/SignUpContext";
 import styled from "styled-components";
 
-export default function HeaderText() {
+export default function HeaderBox({ children }) {
   const { headerText, setHeaderText } = useContext(SignUpContext);
-  let headerTextTop = [
-    // "Growth Memory",
-    "서비스 이용을 위해",
-    "서비스에서 불리고 싶은",
-  ];
-  let headerTextBttom = [
-    // "오늘도 성장하는 나를 위해",
-    "약관 동의를 해주세요 :)",
-    "닉네임을 알려주세요",
-  ];
   return (
     <Div>
       <Img src={`${process.env.PUBLIC_URL}/img/tree.png`} alt="" />
-      <TextBox>
-        <span>{headerTextTop[headerText]}</span>
-        <span>{headerTextBttom[headerText]}</span>
-      </TextBox>
+      <TextBox>{children}</TextBox>
     </Div>
   );
 }

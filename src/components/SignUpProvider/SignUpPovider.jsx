@@ -6,7 +6,7 @@ export default function SignUpProvider(props) {
   const [headerText, setHeaderText] = useState(0); // <- 1씩 증가시켜서 headerText 바꿈
   const [agreement, setAgreement] = useState(0);
   const [disabled, setDisabled] = useState(true);
-  const [signUpStep, setSignUpStep] = useState(0);
+  const [signUpStep, setSignUpStep] = useState("CollectPersonalData");
   const [isChecked, updateIsChecked] = useImmer(checked);
   // console.log(isChecked);
   return (
@@ -20,6 +20,8 @@ export default function SignUpProvider(props) {
         setDisabled,
         isChecked,
         updateIsChecked,
+        signUpStep,
+        setSignUpStep,
       }}
     >
       {props.children}
