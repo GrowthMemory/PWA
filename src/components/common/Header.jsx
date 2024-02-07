@@ -5,7 +5,6 @@ import { SignUpContext } from "../context/SignUpContext";
 
 export default function Header() {
   const { signUpStep } = useContext(SignUpContext);
-  console.log(signUpStep);
   return (
     <HeaderBox>
       <HeaderText text={signUpStep} />

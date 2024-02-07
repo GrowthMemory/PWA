@@ -3,7 +3,7 @@ import { IoCheckmarkOutline } from "react-icons/io5";
 import styled from "styled-components";
 import { SignUpContext } from "../context/SignUpContext";
 export default function Button(props) {
-  const { agreement, setAgreement, updateIsChecked, setHeaderText } =
+  const { agreement, setAgreement, updateIsChecked, setSignUpStep } =
     useContext(SignUpContext);
   const btnText = ["네, 모두 동의 합니다.", "다음"];
 
@@ -29,14 +29,9 @@ export default function Button(props) {
             });
           }
           if (props.num == 1 && agreement == 3) {
-            console.log("A");
-            setHeaderText((prev) => (prev += 1));
+            setSignUpStep("CreateName");
           }
         }}
-        // onSubmit={(e) => {
-        //   e.preventDefault();
-
-        // }}
       >
         {!props.num && <IoCheckmarkOutline className="icon" />}
         {btnText[props.num]}
