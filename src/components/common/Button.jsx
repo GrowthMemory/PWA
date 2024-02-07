@@ -10,12 +10,8 @@ export default function Button(props) {
     setSignUpStep,
     signUpStep,
     overlapCheck,
-    setOverlapCheck,
   } = useContext(SignUpContext);
-  const btnText = {
-    agree: "네, 모두 동의 합니다.",
-    next: "다음",
-  };
+
   return (
     <>
       <Btn
@@ -59,9 +55,12 @@ export default function Button(props) {
     </>
   );
 }
+const btnText = {
+  agree: "네, 모두 동의 합니다.",
+  next: "다음",
+};
 
 const Btn = styled.button`
-  /* margin-bottom: ${(props) => (props.text == "agree" ? "19px" : "0px")}; */
   width: 280px;
   height: ${(props) => (props.text == "agree" ? "46px" : "54px")};
 
@@ -72,7 +71,6 @@ const Btn = styled.button`
   color: ${(props) => (props.agreement != 3 ? "#aeaeb2" : "#FFF")};
 
   position: relative;
-  /* top: ${(props) => (props.text == "agree" ? "0px" : "17px")}; */
 
   display: flex;
   justify-content: center;

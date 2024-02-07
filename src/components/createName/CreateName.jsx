@@ -4,33 +4,8 @@ import Button from "../common/Button";
 import { useContext, useState } from "react";
 import { SignUpContext } from "../context/SignUpContext";
 export default function CreateName() {
-  const { overlapCheck, setOberLapCheck } = useContext(SignUpContext);
+  const { overlapCheck } = useContext(SignUpContext);
   const [inputText, setInputText] = useState("");
-
-  function handleFocusOut(target) {
-    let formula = parseIntoFormula(target.value);
-    console.log(formula);
-    // target.setAttribute("data-formula", formula);
-    target.value = evaluateFormula(formula);
-  }
-
-  function handleDblClick(e) {
-    if (e.pointerType == "touch") {
-      navigator.virtualKeyboard.show();
-    }
-  }
-
-  function parseIntoFormula(text) {
-    console.log("A");
-    return text;
-  }
-
-  function evaluateFormula(formula) {
-    // setInputText(formula);
-    console.log(formula);
-    return formula;
-  }
-
   return (
     <Section>
       <Header />
@@ -39,21 +14,14 @@ export default function CreateName() {
           <InputBox>
             <Input
               type="text"
-              // contenteditable
-              // inputmode="text"
               maxLength={10}
               placeholder="닉네임을 입력해주세요"
               onChange={(e) => {
                 setInputText(e.target.value);
               }}
-              onFocus={(e) => {
-                handleDblClick(e);
-              }}
-              onBlur={(e) => {
-                handleFocusOut(e.target);
-              }}
             />
             <Btn
+              state={overlapCheck}
               onClick={() => {
                 fetchFunc(inputText);
               }}
@@ -64,7 +32,7 @@ export default function CreateName() {
           <Span>{overLapText.span[overlapCheck]}</Span>
         </div>
       </Div>
-      <Button text={"next"} />
+      <Button text={"next"} className={"serch_box"} />
     </Section>
   );
 }
@@ -140,7 +108,11 @@ const Btn = styled.button`
   border: none;
   font-size: 10px;
   color: #fff;
-  background-color: #8e8e93;
+  background-color: ${(props) => {
+    if (props.state == "none") return "#8E8E93";
+    else if (props.state == "false") return "#DC2424";
+    else return "#5AC479";
+  }};
 `;
 
 const Span = styled.span`

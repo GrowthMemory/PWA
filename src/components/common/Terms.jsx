@@ -5,7 +5,6 @@ import { SignUpContext } from "../context/SignUpContext";
 export default function Terms(props) {
   const { setAgreement, updateIsChecked, isChecked } =
     useContext(SignUpContext);
-  // console.log();
   return (
     <Box>
       <Header checked={isChecked[props.num].checked}>
