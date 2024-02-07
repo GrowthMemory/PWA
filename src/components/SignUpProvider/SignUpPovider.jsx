@@ -3,8 +3,8 @@ import { useImmer } from "use-immer";
 import { SignUpContext } from "../context/SignUpContext";
 
 export default function SignUpProvider(props) {
-  const [headerText, setHeaderText] = useState(0); // <- 1씩 증가시켜서 headerText 바꿈
-  const [agreement, setAgreement] = useState(0);
+  const [headerText, setHeaderText] = useState("CollectPersonalData");
+  const [agreement, setAgreement] = useState(0); // 체크 수
   const [disabled, setDisabled] = useState(true);
   const [signUpStep, setSignUpStep] = useState("CollectPersonalData");
   const [isChecked, updateIsChecked] = useImmer(checked);

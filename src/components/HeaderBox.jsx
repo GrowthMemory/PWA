@@ -1,9 +1,7 @@
-import { Children, useContext } from "react";
 import { SignUpContext } from "./context/SignUpContext";
 import styled from "styled-components";
 
 export default function HeaderBox({ children }) {
-  const { headerText, setHeaderText } = useContext(SignUpContext);
   return (
     <Div>
       <Img src={`${process.env.PUBLIC_URL}/img/tree.png`} alt="" />

@@ -9,7 +9,7 @@ export default function TermsBox() {
   return (
     <Box>
       {isChecked.map((obj, n) => (
-        <Terms text={obj.tetx} key={obj.text} num={n} />
+        <Terms text={obj.text} key={obj.text} num={n} />
       ))}
     </Box>
   );

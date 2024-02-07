@@ -8,7 +8,11 @@ export default function BackHeader(props) {
   useEffect(() => {
     props.setCurrentPage(signUpStep);
   }, [signUpStep]);
-  return <Div>{headerText == 0 && <RxCross1 className="close" />}</Div>; // 0인거 나중에 1로 바꿔야 함 아직 구글로그인 페이지 안 만들어서 0인거임
+  return (
+    <Div>
+      {headerText == "CollectPersonalData" && <RxCross1 className="close" />}
+    </Div>
+  ); // 0인거 나중에 1로 바꿔야 함 아직 구글로그인 페이지 안 만들어서 0인거임
 }
 
 const Div = styled.div`
