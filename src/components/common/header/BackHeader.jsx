@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { RxCross1 } from "react-icons/rx";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { SignUpContext } from "../context/SignUpContext";
+import { SignUpContext } from "../../context/SignUpContext";
 export default function BackHeader(props) {
   const { headerText, signUpStep } = useContext(SignUpContext);
   useEffect(() => {

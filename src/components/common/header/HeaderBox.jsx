@@ -1,4 +1,4 @@
-import { SignUpContext } from "./context/SignUpContext";
+import { SignUpContext } from "../../context/SignUpContext";
 import styled from "styled-components";
 
 export default function HeaderBox({ children }) {

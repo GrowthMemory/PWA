@@ -1,11 +1,11 @@
-import HeaderBox from "../HeaderBox";
+import HeaderBox from "../common/header/HeaderBox";
 import Button from "../common/Button";
 import Terms from "../common/Terms";
 import TermsBox from "./TermsBox";
 import styled from "styled-components";
 import { SignUpContext } from "../context/SignUpContext";
 import { useContext } from "react";
-import Header from "../common/Header";
+import Header from "../common/header/Header";
 
 export default function CollectPersonalData() {
   return (

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CollectPersonalData from "../components/CollectPersonalData/CollectPersonalData";
-import BackHeader from "../components/common/BackHeader";
+import BackHeader from "../components/common/header/BackHeader";
 import SignUpProvider from "../components/SignUpProvider/SignUpPovider";
 
 export default function SignUp() {
