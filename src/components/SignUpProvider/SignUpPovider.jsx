@@ -7,6 +7,7 @@ export default function SignUpProvider(props) {
   const [agreement, setAgreement] = useState(0); // 체크 수
   const [disabled, setDisabled] = useState(true);
   const [signUpStep, setSignUpStep] = useState("CollectPersonalData");
+  const [overlapCheck, setOverlapCheck] = useState("none");
   const [isChecked, updateIsChecked] = useImmer(checked);
   // console.log(isChecked);
   return (
@@ -22,6 +23,8 @@ export default function SignUpProvider(props) {
         updateIsChecked,
         signUpStep,
         setSignUpStep,
+        overlapCheck,
+        setOverlapCheck,
       }}
     >
       {props.children}

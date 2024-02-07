@@ -20,6 +20,7 @@ const Div = styled.div`
   width: 360px;
   height: 56px;
   position: relative;
+  background-color: #6e8787;
 
   .close {
     font-size: 26px;

@@ -12,9 +12,9 @@ export default function CollectPersonalData() {
     <>
       <Section>
         <Header />
-        <Button num={0} />
+        <Button text={"agree"} />
         <TermsBox />
-        <Button num={1} />
+        <Button text={"next"} />
       </Section>
     </>
   );
@@ -22,8 +22,10 @@ export default function CollectPersonalData() {
 
 const Section = styled.section`
   width: 360px;
-  height: 464px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  /* background-color: aqua; */
 `;

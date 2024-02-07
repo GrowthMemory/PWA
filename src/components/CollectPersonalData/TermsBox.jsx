@@ -17,7 +17,7 @@ export default function TermsBox() {
 
 const Box = styled.div`
   width: 100%;
-  height: 298px;
+  height: 270px;
   display: flex;
   flex-direction: column;
   align-items: center;

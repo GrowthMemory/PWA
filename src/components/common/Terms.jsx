@@ -37,24 +37,7 @@ export default function Terms(props) {
     </Box>
   );
 }
-{
-  /* <CheckBox
-          type="checkbox"
-          onChange={(e) => {
-            updateIsChecked((update) => {
-              update[props.num].checked = !update[props.num].checked;
-            });
-            if (!isChecked[props.num].checked) {
-              setAgreement((prev) => (prev += 1));
-            } else {
-              setAgreement((prev) => (prev -= 1));
-            }
-          }}
-          checked={isChecked[props.num].checked}
-        /> */
-}
 const Box = styled.div`
-  /* margin-bottom: 5px; */
   width: 293px;
   height: 86px;
 `;

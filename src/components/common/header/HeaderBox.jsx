@@ -13,7 +13,7 @@ export default function HeaderBox({ children }) {
 const Div = styled.div`
   margin: 24px 16px 24px 16px;
   width: 312px;
-  height: 50px;
+  height: 30px;
   display: flex;
   align-items: center;
 `;
