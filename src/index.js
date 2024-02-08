@@ -7,7 +7,8 @@ import { RouterProvider } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
 
 //develop branch
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <>
     <GlobalStyles />
