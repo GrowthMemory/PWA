@@ -1,14 +1,17 @@
 import styled from "styled-components";
-import Header from "../common/header/Header";
 import Button from "../common/Button";
 import { useContext, useState } from "react";
 import { SignUpContext } from "../context/SignUpContext";
+import HeaderBox from "../common/header/HeaderBox";
 export default function CreateName() {
   const { overlapCheck } = useContext(SignUpContext);
   const [inputText, setInputText] = useState("");
   return (
     <Section>
-      <Header />
+      <HeaderBox>
+        <span>서비스에서 불리고 싶은</span>
+        <span>닉네임을 알려주세요</span>
+      </HeaderBox>
       <Div>
         <div>
           <InputBox>

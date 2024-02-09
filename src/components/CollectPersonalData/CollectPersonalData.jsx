@@ -5,13 +5,15 @@ import TermsBox from "./TermsBox";
 import styled from "styled-components";
 import { SignUpContext } from "../context/SignUpContext";
 import { useContext } from "react";
-import Header from "../common/header/Header";
 
 export default function CollectPersonalData() {
   return (
     <>
       <Section>
-        <Header />
+        <HeaderBox>
+          <span>서비스 이용을 위해</span>
+          <span>{"약관 동의를 해주세요 :)"}</span>
+        </HeaderBox>
         <Button text={"agree"} />
         <TermsBox />
         <Button text={"next"} />

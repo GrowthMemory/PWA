@@ -9,19 +9,11 @@ export default function BackHeader(props) {
     props.setCurrentPage(signUpStep);
   }, [signUpStep]);
 
-  function goBack() {
-    if (signUpStep == "CreateName") {
-      setSignUpStep("CollectPersonalData");
-    }
-  }
-
   return (
     <Div>
       <div>
         {signUpStep == "CollectPersonalData" && <RxCross1 className="close" />}
-        {signUpStep == "CreateName" && (
-          <BsChevronLeft className="back" onClick={goBack} />
-        )}
+        {signUpStep == "CreateName" && <BsChevronLeft className="back" />}
       </div>
     </Div>
   );
