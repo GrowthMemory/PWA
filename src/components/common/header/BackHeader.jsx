@@ -3,17 +3,18 @@ import { RxCross1 } from "react-icons/rx";
 import styled from "styled-components";
 import { SignUpContext } from "../../context/SignUpContext";
 import { BsChevronLeft } from "react-icons/bs";
+import { useLocation } from "react-router-dom";
 export default function BackHeader(props) {
-  const { signUpStep, setSignUpStep } = useContext(SignUpContext);
-  useEffect(() => {
-    props.setCurrentPage(signUpStep);
-  }, [signUpStep]);
-
+  let location = useLocation();
   return (
     <Div>
       <div>
-        {signUpStep == "CollectPersonalData" && <RxCross1 className="close" />}
-        {signUpStep == "CreateName" && <BsChevronLeft className="back" />}
+        {location.pathname.replace("/", "") == "SignUp" && (
+          <RxCross1 className="close" />
+        )}
+        {location.pathname.replace("/", "") == "CreateName" && (
+          <BsChevronLeft className="back" />
+        )}
       </div>
     </Div>
   );

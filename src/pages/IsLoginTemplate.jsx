@@ -6,7 +6,6 @@ function IsLoginTemplate(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(firebaseAuth.currentUser);
     if (firebaseAuth.currentUser) {
       navigate("/loginSuccess");
     }

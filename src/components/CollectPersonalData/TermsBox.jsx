@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 export default function TermsBox() {
   const { isChecked } = useContext(SignUpContext);
-
   return (
     <Box>
       {isChecked.map((obj, n) => (

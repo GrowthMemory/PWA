@@ -6,7 +6,7 @@ export default function HeaderBox({ children }) {
   let location = useLocation();
   return (
     <Div location={location.pathname.replace("/", "")}>
-      {location.pathname.replace("/", "") == "SignUp" && (
+      {location.pathname.replace("/", "") != "Login" && (
         <Img src={"img/tree.png"} alt="" />
       )}
       <TextBox location={location.pathname.replace("/", "")}>
