@@ -4,8 +4,13 @@ import IsLoginTemplate from "./pages/IsLoginTemplate";
 import Login from "./pages/Login";
 import CreateName from "./pages/CreateName";
 import CollectPersonalData from "./components/collectPersonalData/CollectPersonalData";
+import Splash from "./pages/Splash";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Splash />,
+  },
   {
     path: "/SignUp",
     element: <CollectPersonalData />,
