@@ -1,3 +1,4 @@
+import { IoCheckmarkOutline } from "react-icons/io5";
 import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { SignUpContext } from "../context/SignUpContext";
@@ -6,10 +7,10 @@ export default function Terms(props) {
     useContext(SignUpContext);
   return (
     <Box>
-      <Header>
-        <CheckBox
-          type="checkbox"
-          onChange={(e) => {
+      <Header checked={isChecked[props.num].checked}>
+        <IoCheckmarkOutline
+          className="checkIcon"
+          onClick={(e) => {
             updateIsChecked((update) => {
               update[props.num].checked = !update[props.num].checked;
             });
@@ -19,7 +20,6 @@ export default function Terms(props) {
               setAgreement((prev) => (prev -= 1));
             }
           }}
-          checked={isChecked[props.num].checked}
         />
         <span>{props.text}</span>
         <Essential>{"(필수)"}</Essential>
@@ -36,9 +36,7 @@ export default function Terms(props) {
     </Box>
   );
 }
-
 const Box = styled.div`
-  /* margin-bottom: 5px; */
   width: 293px;
   height: 86px;
 `;
@@ -49,6 +47,11 @@ const Header = styled.div`
   font-weight: 600;
   display: flex;
   align-items: center;
+
+  .checkIcon {
+    font-size: 24px;
+    color: ${(props) => (props.checked ? "#5AC479" : "#C6C6C6")};
+  }
 `;
 
 const CheckBox = styled.input`

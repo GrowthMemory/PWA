@@ -2,18 +2,26 @@ import { useContext } from "react";
 import { IoCheckmarkOutline } from "react-icons/io5";
 import styled from "styled-components";
 import { SignUpContext } from "../context/SignUpContext";
+import { useNavigate } from "react-router-dom";
 export default function Button(props) {
-  const { agreement, setAgreement, updateIsChecked, setHeaderText } =
-    useContext(SignUpContext);
-  const btnText = ["네, 모두 동의 합니다.", "다음"];
+  const {
+    agreement,
+    setAgreement,
+    updateIsChecked,
+    setSignUpStep,
+    signUpStep,
+    overlapCheck,
+  } = useContext(SignUpContext);
+
+  const navigate = useNavigate();
 
   return (
     <>
       <Btn
-        num={props.num}
+        text={props.text}
         agreement={agreement}
         onClick={(e) => {
-          if (props.num == 0 && agreement != 3) {
+          if (props.text == "agree" && agreement != 3) {
             setAgreement(3);
             updateIsChecked((update) => {
               update[0].checked = true;
@@ -28,27 +36,36 @@ export default function Button(props) {
               update[2].checked = false;
             });
           }
-          if (props.num == 1 && agreement == 3) {
-            console.log("A");
-            setHeaderText((prev) => (prev += 1));
+          if (props.text == "next" && agreement == 3) {
+            navigate("/CreateName");
           }
         }}
-        // onSubmit={(e) => {
-        //   e.preventDefault();
-
-        // }}
+        disabled={
+          props.text == "next"
+            ? signUpStep == "CollectPersonalData"
+              ? agreement == 3
+                ? false
+                : true
+              : overlapCheck == "true"
+              ? false
+              : true
+            : ""
+        }
       >
-        {!props.num && <IoCheckmarkOutline className="icon" />}
-        {btnText[props.num]}
+        {!props.text && <IoCheckmarkOutline className="icon" />}
+        {btnText[props.text]}
       </Btn>
     </>
   );
 }
+const btnText = {
+  agree: "네, 모두 동의 합니다.",
+  next: "다음",
+};
 
 const Btn = styled.button`
-  margin-bottom: ${(props) => (props.num == 0 ? "19px" : "0px")};
   width: 280px;
-  height: ${(props) => (props.num == 0 ? "46px" : "54px")};
+  height: ${(props) => (props.text == "agree" ? "46px" : "54px")};
 
   border: none;
   border-radius: 10px;
@@ -57,25 +74,21 @@ const Btn = styled.button`
   color: ${(props) => (props.agreement != 3 ? "#aeaeb2" : "#FFF")};
 
   position: relative;
-  top: ${(props) => (props.num == 0 ? "0px" : "17px")};
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   background-color: ${(props) => {
-    if (props.num == 0) {
-      if (props.agreement != 3) {
-        return "#E3E3E3";
-      } else {
-        return "#5AC479";
-      }
+    if (props.agreement == 3) {
+      return "#5AC479";
     } else {
-      if (props.agreement == 3) {
-        return "#5AC479";
-      }
+      return "#e3e3e3";
     }
   }};
+  &:disabled {
+    background-color: #e3e3e3;
+  }
 
   .icon {
     font-size: 24px;
