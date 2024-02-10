@@ -1,10 +1,14 @@
+import styled from "styled-components";
+import HomeProvider from "../components/provider/HomeProvider";
 import HomeHeader from "../components/home/HomeHeader";
 import SteadyCalendar from "../components/home/SteadyCalendar";
 import Performance from "../components/home/Performance";
 import { LuPencilLine } from "react-icons/lu";
 import { FaAngleRight } from "react-icons/fa6";
-import styled from "styled-components";
-import HomeProvider from "../components/provider/HomeProvider";
+import { BsPinAngleFill } from "react-icons/bs";
+import { BiSolidMedal } from "react-icons/bi"; //예비1
+import { IoRibbonSharp } from "react-icons/io5"; //예비2
+import { SlBadge } from "react-icons/sl";
 export default function Home() {
   return (
     <HomeProvider>
@@ -15,14 +19,24 @@ export default function Home() {
           오늘의 회고를 작성해주세요
           <FaAngleRight className="rigntIcon" />
         </Btn>
-        <div>
-          <span>얼마나 꾸준히 했는지 살펴보세요</span>
+        <CalendarDiv>
+          <div className="title">
+            <span>
+              <BsPinAngleFill className="pinIcon" /> 얼마나 꾸준히 했는지
+              살펴보세요
+            </span>
+          </div>
           <SteadyCalendar />
-        </div>
-        <div>
-          <span>성과를 확인해보세요</span>
+        </CalendarDiv>
+        <PerformanceDiv>
+          <div className="title">
+            <span>
+              <IoRibbonSharp className="medalIcon" />
+              성과를 확인해보세요
+            </span>
+          </div>
           <Performance />
-        </div>
+        </PerformanceDiv>
       </Section>
     </HomeProvider>
   );
@@ -34,10 +48,10 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: beige;
 `;
 
 const Btn = styled.button`
+  margin-bottom: 27px;
   width: 311px;
   height: 45px;
   border: none;
@@ -56,5 +70,44 @@ const Btn = styled.button`
   .rigntIcon {
     position: absolute;
     right: 12px;
+  }
+`;
+
+const CalendarDiv = styled.div`
+  margin-bottom: 26px;
+  width: 312px;
+  height: 200px;
+
+  .title {
+    width: 100%;
+    height: 30px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .pinIcon {
+    margin-right: 2px;
+    color: red;
+    font-size: 18px;
+    position: relative;
+    top: 4px;
+  }
+`;
+
+const PerformanceDiv = styled.div`
+  width: 312px;
+  height: 110px;
+
+  .title {
+    width: 100%;
+    height: 30px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .medalIcon {
+    margin-right: 2px;
+    color: #ecef5a;
+    font-size: 18px;
+    position: relative;
+    top: 4px;
   }
 `;

@@ -36,7 +36,6 @@ const Div = styled.div`
   margin-top: 63px;
   width: 100%;
   height: 100px;
-  background-color: aqua;
 `;
 
 const Span = styled.span`

@@ -15,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
     #root{
         width: 360px;
         height: 640px;
+        background-color: #FEFAF3;
     }
     @font-face {
     font-family: 'yg-jalnan';
