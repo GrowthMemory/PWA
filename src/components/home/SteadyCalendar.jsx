@@ -1,31 +1,48 @@
 import styled from "styled-components";
 import * as func from "./steadyCalendarFunction";
+import { useContext, useEffect } from "react";
+import { HomeContext } from "../context/context";
 
 export default function SteadyCalendar() {
+  const { retrospectionData, setRetrospectionData, setRetrospectionNumber } =
+    useContext(HomeContext);
+  let currentYear = new Date().getFullYear();
   let dayArr = ["S", "M", "T", "W", "T", "F", "S"];
-
   let dateArr = func.createDataArr();
   let monthArr = func.createMonthArr(dateArr);
 
-  let bb = [
-    [2024, 2, 6],
-    [2024, 2, 7],
-    [2024, 2, 8],
-    [2024, 2, 9],
-    [2024, 2, 10],
-    [2024, 2, 11],
-    [2024, 3, 5],
-    [2024, 5, 2],
-    [2024, 6, 24],
-  ];
+  useEffect(() => {
+    getRetrospectionData();
+  }, []);
+
+  let date = [];
+
+  retrospectionData.forEach((x) => {
+    let temp = x["날짜"].replace(/년|월|일/g, "");
+    date.push(temp.split(" "));
+  });
+
+  async function getRetrospectionData() {
+    try {
+      const response = await fetch("dumy/test.json");
+      const data = await response.json();
+      setRetrospectionData(() => {
+        let temp = data.data;
+        return temp;
+      });
+      setRetrospectionNumber(data.data.length);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   function checkFunc(n2, n, d) {
     let mon = n;
     if (n2 >= 3 && d < 10) mon += 2;
     else mon += 1;
     let check = "";
-    for (let i = 0; i < bb.length; i++) {
-      if (bb[i][1] == mon && bb[i][2] == d) {
+    for (let i = 0; i < date.length; i++) {
+      if (date[i][1] == mon && date[i][2] == d && date[i][0] == currentYear) {
         check = "check";
         break;
       }
