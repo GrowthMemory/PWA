@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useImmer } from "use-immer";
-import { SignUpContext } from "../context/SignUpContext";
+import { SignUpContext } from "../context/context";
 
 export default function SignUpProvider(props) {
   const [agreement, setAgreement] = useState(0);

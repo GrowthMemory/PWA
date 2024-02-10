@@ -7,7 +7,7 @@ function IsLoginTemplate(props) {
 
   useEffect(() => {
     if (firebaseAuth.currentUser) {
-      navigate("/loginSuccess");
+      navigate("/Home");
     }
   }, []);
 

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import Terms from "../common/Terms";
-import { SignUpContext } from "../context/SignUpContext";
+import { SignUpContext } from "../context/context";
 import styled from "styled-components";
 
 export default function TermsBox() {

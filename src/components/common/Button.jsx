@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { IoCheckmarkOutline } from "react-icons/io5";
 import styled from "styled-components";
-import { SignUpContext } from "../context/SignUpContext";
+import { SignUpContext } from "../context/context";
 import { useNavigate } from "react-router-dom";
 export default function Button(props) {
   const {

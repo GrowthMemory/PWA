@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SignUpContext } from "../context/SignUpContext";
+import { SignUpContext } from "../context/context";
 import { useContext } from "react";
 
 export default function OverlapButton(props) {

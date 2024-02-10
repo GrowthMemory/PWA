@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { SignUpContext } from "../context/SignUpContext";
+import { SignUpContext } from "../context/context";
 import styled from "styled-components";
 
 export default function OverlapSpan(props) {

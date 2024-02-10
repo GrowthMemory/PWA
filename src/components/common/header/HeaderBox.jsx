@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { SignUpContext } from "../../context/SignUpContext";
+import { Context } from "../../context/context";
 import styled from "styled-components";
 
 export default function HeaderBox({ children }) {
