@@ -9,6 +9,7 @@ import { BsPinAngleFill } from "react-icons/bs";
 import { BiSolidMedal } from "react-icons/bi"; //예비1
 import { IoRibbonSharp } from "react-icons/io5"; //예비2
 import { SlBadge } from "react-icons/sl";
+import Navigation from "../components/common/Navigation";
 export default function Home() {
   return (
     <HomeProvider>
@@ -38,13 +39,14 @@ export default function Home() {
           <Performance />
         </PerformanceDiv>
       </Section>
+      <Navigation />
     </HomeProvider>
   );
 }
 
 const Section = styled.section`
   width: 100%;
-  height: 477px;
+  height: 421px;
   display: flex;
   flex-direction: column;
   align-items: center;
