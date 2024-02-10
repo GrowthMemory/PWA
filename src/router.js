@@ -3,8 +3,9 @@ import App from "./pages/App";
 import IsLoginTemplate from "./pages/IsLoginTemplate";
 import Login from "./pages/Login";
 import CreateName from "./pages/CreateName";
-import CollectPersonalData from "./components/collectPersonalData/CollectPersonalData";
+import CollectPersonalData from "./pages/CollectPersonalData";
 import Splash from "./pages/Splash";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
   {
@@ -28,8 +29,8 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/loginSuccess",
-    element: <div>Login SUccess</div>,
+    path: "/Home",
+    element: <Home />,
   },
 ]);
 
