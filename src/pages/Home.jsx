@@ -6,16 +6,20 @@ import Performance from "../components/home/Performance";
 import { LuPencilLine } from "react-icons/lu";
 import { FaAngleRight } from "react-icons/fa6";
 import { BsPinAngleFill } from "react-icons/bs";
-import { BiSolidMedal } from "react-icons/bi";
 import { IoRibbonSharp } from "react-icons/io5";
-import { SlBadge } from "react-icons/sl";
 import Navigation from "../components/common/Navigation";
+import { useNavigate } from "react-router-dom";
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <HomeProvider>
       <HomeHeader />
       <Section>
-        <Btn>
+        <Btn
+          onClick={() => {
+            navigate("/Write");
+          }}
+        >
           <LuPencilLine className="leftIcon" />
           오늘의 회고를 작성해주세요
           <FaAngleRight className="rigntIcon" />
