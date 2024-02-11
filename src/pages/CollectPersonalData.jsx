@@ -15,8 +15,11 @@ export default function CollectPersonalData() {
         <BackHeader />
         <Section>
           <HeaderBox>
-            <span>서비스 이용을 위해</span>
-            <span>{"약관 동의를 해주세요 :)"}</span>
+            <Img src={"img/tree.png"} alt="" />
+            <div className="text">
+              <span>서비스 이용을 위해</span>
+              <span>{"약관 동의를 해주세요 :)"}</span>
+            </div>
           </HeaderBox>
           <Button text={"agree"} />
           <TermsBox />
@@ -35,4 +38,11 @@ const Section = styled.section`
   align-items: center;
   justify-content: space-between;
   /* background-color: aqua; */
+`;
+
+const Img = styled.img`
+  margin: 0 10px 0 24px;
+  margin-right: 10px;
+  width: 20px;
+  height: 38px;
 `;
