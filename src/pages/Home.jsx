@@ -6,8 +6,8 @@ import Performance from "../components/home/Performance";
 import { LuPencilLine } from "react-icons/lu";
 import { FaAngleRight } from "react-icons/fa6";
 import { BsPinAngleFill } from "react-icons/bs";
-import { BiSolidMedal } from "react-icons/bi"; //예비1
-import { IoRibbonSharp } from "react-icons/io5"; //예비2
+import { BiSolidMedal } from "react-icons/bi";
+import { IoRibbonSharp } from "react-icons/io5";
 import { SlBadge } from "react-icons/sl";
 import Navigation from "../components/common/Navigation";
 export default function Home() {

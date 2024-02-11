@@ -37,7 +37,6 @@ const Section = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  /* background-color: aqua; */
 `;
 
 const Img = styled.img`
