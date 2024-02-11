@@ -1,10 +1,31 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { WriteContext } from "../context/context";
 
 export default function WriteBox(props) {
+  const { retrospectionData, updateRetrospectionData } =
+    useContext(WriteContext);
   return (
     <>
       <Title>{props.children}</Title>
-      <TextArea maxLength={600}></TextArea>
+      <TextArea
+        maxLength={600}
+        onChange={(e) => {
+          if (props.id == "keep") {
+            updateRetrospectionData((data) => {
+              data.text.keep = e.target.value;
+            });
+          } else if (props.id == "problem") {
+            updateRetrospectionData((data) => {
+              data.text.problem = e.target.value;
+            });
+          } else {
+            updateRetrospectionData((data) => {
+              data.text.try = e.target.value;
+            });
+          }
+        }}
+      ></TextArea>
     </>
   );
 }

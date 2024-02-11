@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { WriteContext } from "../../context/context";
+import { useContext } from "react";
 
 export default function MainHeader(props) {
   return (
@@ -34,7 +36,7 @@ const TextBox = styled.div`
     left: 24px;
   }
   .text {
-    width: 140px;
+    width: 160px;
     height: 100%;
     font-size: 16px;
     font-weight: 600;

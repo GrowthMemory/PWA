@@ -4,44 +4,28 @@ import WriteBox from "../components/retrospection/WriteBox";
 import styled from "styled-components";
 import { HiLocationMarker } from "react-icons/hi";
 import { TiWarning } from "react-icons/ti";
-import { FaLeaf } from "react-icons/fa";
-import { IoTriangle } from "react-icons/io5";
-import { BsChevronLeft } from "react-icons/bs";
+import { useState } from "react";
+import HeaderText from "../components/retrospection/HeaderText";
+import InputCalendar from "../components/retrospection/InputCalendar";
 
 export default function Retrospection() {
   return (
     <RetrospectionBox>
       <WriteProvider>
         <MainHeader>
-          <div className="backBtn">
-            <BsChevronLeft />
-          </div>
-          <div className="text">
-            <FaLeaf className="leafIcon" />
-            <span>
-              {"2"}월{"8"}일의 회고
-            </span>
-            <IoTriangle className="calendarBtn" />
-          </div>
+          <HeaderText />
         </MainHeader>
-        <Input
-          type="date"
-          name=""
-          id=""
-          onClick={(e) => {
-            // console.log(e.target.value.split("-"));
-          }}
-        />
+        <InputCalendar />
         <Div>
-          <WriteBox>
+          <WriteBox id={"keep"}>
             <HiLocationMarker className="icon" />
             <span>현재까지 만족한 점: KEEP</span>
           </WriteBox>
-          <WriteBox>
+          <WriteBox id={"problem"}>
             <TiWarning className="icon" />
             <span>아쉬웠거나 개선이 필요하다고 느낀 점: Problem</span>
           </WriteBox>
-          <WriteBox>
+          <WriteBox id={"try"}>
             <img src="img/sprout.png" alt="" className="icon" />
             <span>앞으로 개선할 점: Try</span>
           </WriteBox>
@@ -50,32 +34,6 @@ export default function Retrospection() {
     </RetrospectionBox>
   );
 }
-
-const Input = styled.input`
-  width: 200px;
-  height: 50px;
-  border: none;
-  outline: none;
-  position: absolute;
-  top: 44px;
-  left: 70px;
-  background-color: transparent;
-
-  &::-webkit-datetime-edit-month-field,
-  &::-webkit-datetime-edit-day-field,
-  &::-webkit-datetime-edit-year-field,
-  &::-webkit-datetime-edit-text,
-  &::-webkit-calendar-picker-indicator,
-  &::-webkit-inner-spin-button {
-    appearance: none;
-    display: none;
-  }
-
-  &::-webkit-calendar-picker-indicator {
-    display: block;
-    padding-left: 200px;
-  }
-`;
 
 const RetrospectionBox = styled.div`
   width: 100%;
