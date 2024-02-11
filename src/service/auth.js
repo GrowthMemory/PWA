@@ -1,4 +1,10 @@
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import {
+    GoogleAuthProvider,
+    getAuth,
+    signInWithPopup,
+    signOut,
+    updateProfile,
+} from "firebase/auth";
 import { firebaseAuth } from "./firebaseConfig";
 
 const provider = new GoogleAuthProvider();
@@ -17,5 +23,23 @@ export const signInWithGoogle = () => {
             const errorMessage = err.message;
             const email = err.customData.email;
             const credential = GoogleAuthProvider.credentialFromError(err);
+        });
+};
+
+export const onSignOut = async () => {
+    try {
+        await signOut(auth);
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const setDisplayName = async (displayName) => {
+    updateProfile(auth.currentUser, {
+        displayName: displayName,
+    })
+        .then(() => {})
+        .catch((error) => {
+            console.log(error);
         });
 };
