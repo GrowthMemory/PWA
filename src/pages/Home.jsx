@@ -1,14 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import HomeProvider from "../components/provider/HomeProvider";
 import HomeHeader from "../components/home/HomeHeader";
 import SteadyCalendar from "../components/home/SteadyCalendar";
 import Performance from "../components/home/Performance";
+import Navigation from "../components/common/Navigation";
 import { LuPencilLine } from "react-icons/lu";
 import { FaAngleRight } from "react-icons/fa6";
 import { BsPinAngleFill } from "react-icons/bs";
 import { IoRibbonSharp } from "react-icons/io5";
-import Navigation from "../components/common/Navigation";
-import { useNavigate } from "react-router-dom";
 export default function Home() {
   const navigate = useNavigate();
   return (

@@ -1,10 +1,7 @@
 import HeaderBox from "../components/common/header/HeaderBox";
 import Button from "../components/common/Button";
-import Terms from "../components/common/Terms";
 import TermsBox from "../components/collectPersonalData/TermsBox";
 import styled from "styled-components";
-import { Context } from "../components/context/context";
-import { useContext } from "react";
 import SignUpProvider from "../components/provider/SignUpPovider";
 import BackHeader from "../components/common/header/BackHeader";
 

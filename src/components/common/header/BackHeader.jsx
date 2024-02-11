@@ -1,7 +1,5 @@
-import { useContext, useEffect } from "react";
-import { RxCross1 } from "react-icons/rx";
 import styled from "styled-components";
-import { Context } from "../../context/context";
+import { RxCross1 } from "react-icons/rx";
 import { BsChevronLeft } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
 export default function BackHeader(props) {

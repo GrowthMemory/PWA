@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { WriteContext } from "../../context/context";
-import { useContext } from "react";
 
 export default function MainHeader(props) {
   return (

@@ -1,5 +1,4 @@
 import { useLocation } from "react-router-dom";
-import { Context } from "../../context/context";
 import styled from "styled-components";
 
 export default function HeaderBox({ children }) {

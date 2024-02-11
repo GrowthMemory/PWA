@@ -1,12 +1,11 @@
+import styled from "styled-components";
 import WriteProvider from "../components/provider/WriteProvider";
 import MainHeader from "../components/common/header/MainHeader";
 import WriteBox from "../components/retrospection/WriteBox";
-import styled from "styled-components";
-import { HiLocationMarker } from "react-icons/hi";
-import { TiWarning } from "react-icons/ti";
-import { useState } from "react";
 import HeaderText from "../components/retrospection/HeaderText";
 import InputCalendar from "../components/retrospection/InputCalendar";
+import { HiLocationMarker } from "react-icons/hi";
+import { TiWarning } from "react-icons/ti";
 
 export default function Retrospection() {
   return (
