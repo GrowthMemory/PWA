@@ -1,17 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { firebaseAuth } from "../service/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../service/auth";
 
 function IsLoginTemplate(props) {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    if (firebaseAuth.currentUser) {
-      navigate("/Home");
-    }
-  }, []);
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                navigate("/Home");
+            } else {
+                navigate("/Login");
+            }
+        });
+    }, [auth]);
 
-  return <>{props.children}</>;
+    return <>{props.children}</>;
 }
 
 export default IsLoginTemplate;
