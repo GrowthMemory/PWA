@@ -2,11 +2,12 @@ import { FaLeaf } from "react-icons/fa";
 import { IoTriangle } from "react-icons/io5";
 import { BsChevronLeft } from "react-icons/bs";
 import { useContext } from "react";
-import { WriteContext } from "../context/context";
+import { CalendarContext, WriteContext } from "../context/context";
 import styled from "styled-components";
 export default function HeaderText() {
   const { retrospectionData, updateRetrospectionData } =
     useContext(WriteContext);
+  console.log(retrospectionData);
   return (
     <>
       <BackBtn>

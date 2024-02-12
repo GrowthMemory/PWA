@@ -46,30 +46,14 @@ export default function InputCalendar() {
         if (location == "/Calendar") {
           let temp = e.target.value.split("-");
           if (temp[1][0] == "0") temp[1] = Number(temp[1].substring(1, 2));
-          if (
-            (temp[0] == currentYear && currentMonth + 1 > temp[1]) ||
-            (temp[0] < currentYear && currentMonth < temp[1])
-          ) {
-            setCurrentDate((prev) => {
-              let tempMonth = prev.getMonth();
-              if (tempMonth == 0) tempMonth = 12;
-              return new Date(temp[0], tempMonth - 1);
-            });
-            updateSelectDate((date) => {
-              date.year = temp[0];
-              date.month = temp[1];
-            });
-          } else {
-            setCurrentDate((prev) => {
-              let tempMonth = prev.getMonth();
-              if (tempMonth == 11) tempMonth = -1;
-              return new Date(temp[0], tempMonth + 1);
-            });
-            updateSelectDate((date) => {
-              date.year = temp[0];
-              date.month = temp[1];
-            });
-          }
+
+          setCurrentDate((prev) => {
+            return new Date(temp[0], temp[1] - 1);
+          });
+          updateSelectDate((date) => {
+            date.year = temp[0];
+            date.month = temp[1];
+          });
         }
       }}
     />

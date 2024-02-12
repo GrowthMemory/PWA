@@ -12,6 +12,12 @@ export default function CalendarProvider(props) {
     year: nowYear,
     month: nowMonth + 1,
   });
+  const [tempDate, setTempDate] = useState([
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+    currentDate.getDate(),
+  ]);
+  const [showModal, setShowModal] = useState(false);
   return (
     <CalendarContext.Provider
       value={{
@@ -23,6 +29,10 @@ export default function CalendarProvider(props) {
         setPreveMonth,
         selectDate,
         updateSelectDate,
+        tempDate,
+        setTempDate,
+        showModal,
+        setShowModal,
       }}
     >
       {props.children}

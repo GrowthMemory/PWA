@@ -1,20 +1,24 @@
-import { CalendarContext } from "../context/context";
+import { CalendarContext, WriteContext } from "../context/context";
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import CalendarFunction from "./CalendarFunction";
 import { IoTriangle } from "react-icons/io5";
 import InputCalendar from "../common/InputCalendar";
-import WriteProvider from "../provider/WriteProvider";
+import GoingRetrospection from "./GoingRetrospection";
 export default function CalendarFrame() {
   const {
     currentDate,
     nextMonth,
-    setNextMonth,
     prevMonth,
-    setPreveMonth,
     selectDate,
-    updateSelectDate,
+    tempDate,
+    setTempDate,
+    showModal,
+    setShowModal,
   } = useContext(CalendarContext);
+  const { retrospectionData, updateRetrospectionData } =
+    useContext(WriteContext);
+  console.log(retrospectionData);
   const dates = CalendarFunction(currentDate, nextMonth, prevMonth);
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   return (
@@ -25,9 +29,7 @@ export default function CalendarFrame() {
         </span>
         <CalendarBtn />
       </DateBox>
-      <WriteProvider>
-        <InputCalendar />
-      </WriteProvider>
+      <InputCalendar />
       <Table>
         <Thead>
           <tr>
@@ -53,7 +55,25 @@ export default function CalendarFrame() {
                 date == 0 ? (
                   <td key={n2} style={{ visibility: "hidden" }}></td>
                 ) : (
-                  <td key={n2}>
+                  <td
+                    key={n2}
+                    onClick={(e) => {
+                      setTempDate(() => {
+                        let temp = [
+                          currentDate.getFullYear(),
+                          currentDate.getMonth() + 1,
+                          date,
+                        ];
+                        return temp;
+                      });
+                      updateRetrospectionData((data) => {
+                        data.date.year = currentDate.getFullYear();
+                        data.date.month = currentDate.getMonth() + 1;
+                        data.date.date = date;
+                      });
+                      setShowModal(true);
+                    }}
+                  >
                     <div>
                       <img src="" alt="" />
                     </div>
@@ -65,6 +85,7 @@ export default function CalendarFrame() {
           ))}
         </Tbody>
       </Table>
+      {showModal && <GoingRetrospection />}
     </Div>
   );
 }
