@@ -5,20 +5,18 @@ import CalendarFunction from "./CalendarFunction";
 import { IoTriangle } from "react-icons/io5";
 import InputCalendar from "../common/InputCalendar";
 import GoingRetrospection from "./GoingRetrospection";
+import { SELECTDATE } from "../common/key";
 export default function CalendarFrame() {
   const {
     currentDate,
     nextMonth,
     prevMonth,
     selectDate,
-    tempDate,
     setTempDate,
     showModal,
     setShowModal,
   } = useContext(CalendarContext);
-  const { retrospectionData, updateRetrospectionData } =
-    useContext(WriteContext);
-  console.log(retrospectionData);
+  const { retrospectionData } = useContext(WriteContext);
   const dates = CalendarFunction(currentDate, nextMonth, prevMonth);
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   return (
@@ -66,11 +64,17 @@ export default function CalendarFrame() {
                         ];
                         return temp;
                       });
-                      updateRetrospectionData((data) => {
-                        data.date.year = currentDate.getFullYear();
-                        data.date.month = currentDate.getMonth() + 1;
-                        data.date.date = date;
-                      });
+                      let temp = {
+                        ...retrospectionData,
+                        date: {
+                          ...retrospectionData.date,
+                          year: currentDate.getFullYear(),
+                          month: currentDate.getMonth() + 1,
+                          date: date,
+                        },
+                      };
+                      localStorage.setItem(SELECTDATE, JSON.stringify(temp));
+
                       setShowModal(true);
                     }}
                   >
@@ -106,7 +110,6 @@ const DateBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: aqua;
 `;
 
 const CalendarBtn = styled(IoTriangle)`

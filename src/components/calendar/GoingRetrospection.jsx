@@ -2,6 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { CalendarContext, WriteContext } from "../context/context";
 import { useNavigate } from "react-router-dom";
+import { SELECTDATE } from "../common/key";
 
 export default function GoingRetrospection() {
   const { showModal, setShowModal, tempDate } = useContext(CalendarContext);
@@ -16,6 +17,7 @@ export default function GoingRetrospection() {
           <LeftBtn
             onClick={() => {
               setShowModal(false);
+              localStorage.removeItem(SELECTDATE);
             }}
           >
             아니오
