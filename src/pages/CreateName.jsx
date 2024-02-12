@@ -13,8 +13,11 @@ export default function CreateName() {
       <BackHeader />
       <Section>
         <HeaderBox>
-          <span>서비스에서 불리고 싶은</span>
-          <span>닉네임을 알려주세요</span>
+          <Img src={"img/tree.png"} alt="" />
+          <div className="text">
+            <span>서비스에서 불리고 싶은</span>
+            <span>닉네임을 알려주세요</span>
+          </div>
         </HeaderBox>
         <Div>
           <div>
@@ -85,4 +88,11 @@ const Input = styled.input`
   border: none;
   border-radius: 10px;
   outline: none;
+`;
+
+const Img = styled.img`
+  margin: 0 10px 0 24px;
+  margin-right: 10px;
+  width: 20px;
+  height: 38px;
 `;

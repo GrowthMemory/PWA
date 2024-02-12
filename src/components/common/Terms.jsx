@@ -1,6 +1,6 @@
-import { IoCheckmarkOutline } from "react-icons/io5";
-import { useContext, useEffect } from "react";
 import styled from "styled-components";
+import { IoCheckmarkOutline } from "react-icons/io5";
+import { useContext } from "react";
 import { SignUpContext } from "../context/context";
 export default function Terms(props) {
   const { setAgreement, updateIsChecked, isChecked } =
