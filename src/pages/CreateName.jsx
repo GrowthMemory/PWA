@@ -9,7 +9,7 @@ import Button from "../components/common/Button";
 export default function CreateName() {
   const [inputText, setInputText] = useState("");
   return (
-    <SignUpProvider>
+    <>
       <BackHeader />
       <Section>
         <HeaderBox>
@@ -19,25 +19,30 @@ export default function CreateName() {
             <span>닉네임을 알려주세요</span>
           </TextBox>
         </HeaderBox>
-        <Div>
-          <div>
-            <InputBox>
-              <Input
-                type="text"
-                maxLength={10}
-                placeholder="닉네임을 입력해주세요"
-                onChange={(e) => {
-                  setInputText(e.target.value);
-                }}
-              />
-              <OverlapButton inputText={inputText} overLapText={overLapText} />
-            </InputBox>
-            <OverlapSpan overLapText={overLapText} />
-          </div>
-        </Div>
-        <Button text={"next"} />
+        <SignUpProvider>
+          <Div>
+            <div>
+              <InputBox>
+                <Input
+                  type="text"
+                  maxLength={10}
+                  placeholder="닉네임을 입력해주세요"
+                  onChange={(e) => {
+                    setInputText(e.target.value);
+                  }}
+                />
+                <OverlapButton
+                  inputText={inputText}
+                  overLapText={overLapText}
+                />
+              </InputBox>
+              <OverlapSpan overLapText={overLapText} />
+            </div>
+          </Div>
+          <Button text={"next"} />
+        </SignUpProvider>
       </Section>
-    </SignUpProvider>
+    </>
   );
 }
 

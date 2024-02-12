@@ -6,14 +6,16 @@ import WriteProvider from "../components/provider/WriteProvider";
 
 export default function Calendar() {
   return (
-    <WriteProvider>
-      <CalendarProvider>
-        <MainHeader>
-          <span>캘린더</span>
-        </MainHeader>
-        <CalendarFrame />
-        <Navigation />
-      </CalendarProvider>
-    </WriteProvider>
+    <>
+      <MainHeader>
+        <span>캘린더</span>
+      </MainHeader>
+      <WriteProvider>
+        <CalendarProvider>
+          <CalendarFrame />
+          <Navigation />
+        </CalendarProvider>
+      </WriteProvider>
+    </>
   );
 }

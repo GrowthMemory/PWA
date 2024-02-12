@@ -4,13 +4,14 @@ import { BsChevronLeft } from "react-icons/bs";
 import { useContext } from "react";
 import { CalendarContext, WriteContext } from "../context/context";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 export default function HeaderText() {
   const { retrospectionData, updateRetrospectionData } =
     useContext(WriteContext);
-  console.log(retrospectionData);
+  const navigate = useNavigate();
   return (
     <>
-      <BackBtn>
+      <BackBtn onClick={() => navigate(-1)}>
         <BsChevronLeft />
       </BackBtn>
       <TextBox>

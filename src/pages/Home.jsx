@@ -9,41 +9,49 @@ import { LuPencilLine } from "react-icons/lu";
 import { FaAngleRight } from "react-icons/fa6";
 import { BsPinAngleFill } from "react-icons/bs";
 import { IoRibbonSharp } from "react-icons/io5";
+import { useEffect } from "react";
+import { SELECTDATE } from "../components/common/key";
 export default function Home() {
   const navigate = useNavigate();
+  useEffect(() => {
+    localStorage.removeItem(SELECTDATE);
+  });
   return (
-    <HomeProvider>
-      <HomeHeader />
-      <Section>
-        <Btn
-          onClick={() => {
-            navigate("/Write");
-          }}
-        >
-          <LeftIcon />
-          오늘의 회고를 작성해주세요
-          <RightIcon />
-        </Btn>
-        <CalendarDiv>
-          <Title>
-            <span>
-              <PinIcon /> 얼마나 꾸준히 했는지 살펴보세요
-            </span>
-          </Title>
-          <SteadyCalendar />
-        </CalendarDiv>
-        <PerformanceDiv>
-          <Title>
-            <span>
-              <MedalIcon />
-              성과를 확인해보세요
-            </span>
-          </Title>
-          <Performance />
-        </PerformanceDiv>
-      </Section>
-      <Navigation />
-    </HomeProvider>
+    <>
+      {" "}
+      <HomeProvider>
+        <HomeHeader />
+        <Section>
+          <Btn
+            onClick={() => {
+              navigate("/Write");
+            }}
+          >
+            <LeftIcon />
+            오늘의 회고를 작성해주세요
+            <RightIcon />
+          </Btn>
+          <CalendarDiv>
+            <Title>
+              <span>
+                <PinIcon /> 얼마나 꾸준히 했는지 살펴보세요
+              </span>
+            </Title>
+            <SteadyCalendar />
+          </CalendarDiv>
+          <PerformanceDiv>
+            <Title>
+              <span>
+                <MedalIcon />
+                성과를 확인해보세요
+              </span>
+            </Title>
+            <Performance />
+          </PerformanceDiv>
+        </Section>
+        <Navigation />
+      </HomeProvider>
+    </>
   );
 }
 

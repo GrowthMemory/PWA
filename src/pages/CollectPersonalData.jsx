@@ -8,21 +8,21 @@ import BackHeader from "../components/common/header/BackHeader";
 export default function CollectPersonalData() {
   return (
     <>
-      <SignUpProvider>
-        <BackHeader />
-        <Section>
-          <HeaderBox>
-            <Img src={"img/tree.png"} alt="" />
-            <TextBox>
-              <span>서비스 이용을 위해</span>
-              <span>{"약관 동의를 해주세요 :)"}</span>
-            </TextBox>
-          </HeaderBox>
+      <BackHeader />
+      <Section>
+        <HeaderBox>
+          <Img src={"img/tree.png"} alt="" />
+          <TextBox>
+            <span>서비스 이용을 위해</span>
+            <span>{"약관 동의를 해주세요 :)"}</span>
+          </TextBox>
+        </HeaderBox>
+        <SignUpProvider>
           <Button text={"agree"} />
           <TermsBox />
           <Button text={"next"} />
-        </Section>
-      </SignUpProvider>
+        </SignUpProvider>
+      </Section>
     </>
   );
 }
