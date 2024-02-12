@@ -1,11 +1,19 @@
 import { useContext } from "react";
-import { WriteContext } from "../context/context";
+import { CalendarContext, WriteContext } from "../context/context";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 
 export default function InputCalendar() {
+  const location = useLocation().pathname;
   const { retrospectionData, updateRetrospectionData } =
     useContext(WriteContext);
-  const selectDate =
+  const { currentDate, setCurrentDate, updateSelectDate } =
+    useContext(CalendarContext);
+
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+
+  const defaultDate =
     retrospectionData.date.year +
     "-" +
     "0" +
@@ -15,23 +23,54 @@ export default function InputCalendar() {
     retrospectionData.date.date;
   return (
     <Input
+      location={location}
       type="date"
-      defaultValue={selectDate}
+      defaultValue={defaultDate}
       onChange={(e) => {
-        updateRetrospectionData((data) => {
+        if (location == "/Write") {
+          updateRetrospectionData((data) => {
+            let temp = e.target.value.split("-");
+            data.date.year = temp[0];
+            if (temp[1][0] == 0) {
+              data.date.month = temp[1].substring(1, 2);
+            } else {
+              data.date.month = temp[1];
+            }
+            if (temp[2][0] == 0) {
+              data.date.date = temp[2].substring(1, 2);
+            } else {
+              data.date.date = temp[2];
+            }
+          });
+        }
+        if (location == "/Calendar") {
           let temp = e.target.value.split("-");
-          data.date.year = temp[0];
-          if (temp[1][0] == 0) {
-            data.date.month = temp[1].substring(1, 2);
+          if (temp[1][0] == "0") temp[1] = Number(temp[1].substring(1, 2));
+          if (
+            (temp[0] == currentYear && currentMonth + 1 > temp[1]) ||
+            (temp[0] < currentYear && currentMonth < temp[1])
+          ) {
+            setCurrentDate((prev) => {
+              let tempMonth = prev.getMonth();
+              if (tempMonth == 0) tempMonth = 12;
+              return new Date(temp[0], tempMonth - 1);
+            });
+            updateSelectDate((date) => {
+              date.year = temp[0];
+              date.month = temp[1];
+            });
           } else {
-            data.date.month = temp[1];
+            setCurrentDate((prev) => {
+              let tempMonth = prev.getMonth();
+              if (tempMonth == 11) tempMonth = -1;
+              return new Date(temp[0], tempMonth + 1);
+            });
+            updateSelectDate((date) => {
+              date.year = temp[0];
+              date.month = temp[1];
+            });
           }
-          if (temp[2][0] == 0) {
-            data.date.date = temp[2].substring(1, 2);
-          } else {
-            data.date.date = temp[2];
-          }
-        });
+        }
       }}
     />
   );
@@ -43,7 +82,7 @@ const Input = styled.input`
   border: none;
   outline: none;
   position: absolute;
-  top: 44px;
+  top: ${(props) => (props.location == "/Write" ? "44px" : "")};
   left: 70px;
   background-color: transparent;
 
