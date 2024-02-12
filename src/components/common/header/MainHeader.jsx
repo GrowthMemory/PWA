@@ -1,17 +1,22 @@
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 export default function MainHeader(props) {
+  const location = useLocation().pathname;
   return (
-    <Div>
+    <Div location={location}>
       <TextBox>{props.children}</TextBox>
     </Div>
   );
 }
 
 const Div = styled.div`
-  margin: 44px 0 40px 0;
+  margin: ${(props) =>
+    props.location == "/Write" ? "44px 0 40px 0" : "44px 0 31px 0"};
   width: 360px;
   height: 56px;
+  font-size: 16px;
+  font-weight: 600;
 `;
 
 const TextBox = styled.div`
