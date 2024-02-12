@@ -14,10 +14,10 @@ export default function CreateName() {
       <Section>
         <HeaderBox>
           <Img src={"img/tree.png"} alt="" />
-          <div className="text">
+          <TextBox>
             <span>서비스에서 불리고 싶은</span>
             <span>닉네임을 알려주세요</span>
-          </div>
+          </TextBox>
         </HeaderBox>
         <Div>
           <div>
@@ -35,7 +35,7 @@ export default function CreateName() {
             <OverlapSpan overLapText={overLapText} />
           </div>
         </Div>
-        <Button text={"next"} className={"serch_box"} />
+        <Button text={"next"} />
       </Section>
     </SignUpProvider>
   );
@@ -95,4 +95,12 @@ const Img = styled.img`
   margin-right: 10px;
   width: 20px;
   height: 38px;
+`;
+
+const TextBox = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;

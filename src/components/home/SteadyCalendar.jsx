@@ -57,7 +57,7 @@ export default function SteadyCalendar() {
           <span key={day + n}>{day}</span>
         ))}
       </DayBox>
-      <CalenderBox className="scroll">
+      <CalenderBox>
         <MonthBox>
           {monthArr.map((month, monthNum) => (
             <Month key={month}>
@@ -66,15 +66,10 @@ export default function SteadyCalendar() {
                 {month.map((week, weekNum) => (
                   <Week key={week}>
                     {week.map((day) => {
-                      return (
-                        <DateBox
-                          className={` m${
-                            weekNum >= 3 && day < 10
-                              ? monthNum + 2
-                              : monthNum + 1
-                          }d${day} ${checkFunc(weekNum, monthNum, day)}`}
-                          key={day}
-                        ></DateBox>
+                      return checkFunc(weekNum, monthNum, day) == "check" ? (
+                        <Checked key={day}></Checked>
+                      ) : (
+                        <DateBox key={day}></DateBox>
                       );
                     })}
                   </Week>
@@ -97,11 +92,11 @@ const Div = styled.div`
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
   background-color: #fff;
 
-  .scroll::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
-  .scroll::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
     background-color: #636366;
     border-radius: 10px;
   }
@@ -154,6 +149,14 @@ const DateBox = styled.div`
   height: 15px;
   border-radius: 5px;
   background-color: #e3e3e3;
+`;
+
+const Checked = styled.div`
+  margin: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  background-color: #5ac479;
 `;
 
 const DayBox = styled.div`

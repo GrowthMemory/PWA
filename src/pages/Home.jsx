@@ -20,26 +20,25 @@ export default function Home() {
             navigate("/Write");
           }}
         >
-          <LuPencilLine className="leftIcon" />
+          <LeftIcon />
           오늘의 회고를 작성해주세요
-          <FaAngleRight className="rigntIcon" />
+          <RightIcon />
         </Btn>
         <CalendarDiv>
-          <div className="title">
+          <Title>
             <span>
-              <BsPinAngleFill className="pinIcon" /> 얼마나 꾸준히 했는지
-              살펴보세요
+              <PinIcon /> 얼마나 꾸준히 했는지 살펴보세요
             </span>
-          </div>
+          </Title>
           <SteadyCalendar />
         </CalendarDiv>
         <PerformanceDiv>
-          <div className="title">
+          <Title>
             <span>
-              <IoRibbonSharp className="medalIcon" />
+              <MedalIcon />
               성과를 확인해보세요
             </span>
-          </div>
+          </Title>
           <Performance />
         </PerformanceDiv>
       </Section>
@@ -69,51 +68,46 @@ const Btn = styled.button`
   align-items: center;
   position: relative;
   background-color: #5ac479;
+`;
+const LeftIcon = styled(LuPencilLine)`
+  margin: 0 14px 0 17px;
+`;
 
-  .leftIcon {
-    margin: 0 14px 0 17px;
-  }
-  .rigntIcon {
-    position: absolute;
-    right: 12px;
-  }
+const RightIcon = styled(FaAngleRight)`
+  position: absolute;
+  right: 12px;
 `;
 
 const CalendarDiv = styled.div`
   margin-bottom: 26px;
   width: 312px;
   height: 200px;
+`;
 
-  .title {
-    width: 100%;
-    height: 30px;
-    font-size: 16px;
-    font-weight: 600;
-  }
-  .pinIcon {
-    margin-right: 2px;
-    color: red;
-    font-size: 18px;
-    position: relative;
-    top: 4px;
-  }
+const Title = styled.div`
+  width: 100%;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 600;
+`;
+
+const PinIcon = styled(BsPinAngleFill)`
+  margin-right: 2px;
+  color: red;
+  font-size: 18px;
+  position: relative;
+  top: 4px;
 `;
 
 const PerformanceDiv = styled.div`
   width: 312px;
   height: 110px;
+`;
 
-  .title {
-    width: 100%;
-    height: 30px;
-    font-size: 16px;
-    font-weight: 600;
-  }
-  .medalIcon {
-    margin-right: 2px;
-    color: #ecef5a;
-    font-size: 18px;
-    position: relative;
-    top: 4px;
-  }
+const MedalIcon = styled(IoRibbonSharp)`
+  margin-right: 2px;
+  color: #ecef5a;
+  font-size: 18px;
+  position: relative;
+  top: 4px;
 `;

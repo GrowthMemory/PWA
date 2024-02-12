@@ -10,11 +10,11 @@ export default function Navigation() {
   const location = useLocation().pathname;
   return (
     <Div>
-      <MdHome className={location == "/Home" ? "focus" : ""} />
-      <PiChartLine className={location == "/Report" ? "focus" : ""} />
-      <FaCalendar className={location == "/Calendar" ? "focus" : ""} />
-      <BsChatFill className={location == "/Chat" ? "focus" : ""} />
-      <IoMdSettings className={location == "/MyPage" ? "focus" : ""} />
+      <MdHome style={location == "/Home" ? { color: "#5ac479" } : ""} />
+      <PiChartLine style={location == "/Report" ? { color: "#5ac479" } : ""} />
+      <FaCalendar style={location == "/Calendar" ? { color: "#5ac479" } : ""} />
+      <BsChatFill style={location == "/Chat" ? { color: "#5ac479" } : ""} />
+      <IoMdSettings style={location == "/MyPage" ? { color: "#5ac479" } : ""} />
     </Div>
   );
 }
@@ -27,8 +27,4 @@ const Div = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-
-  .focus {
-    color: #5ac479;
-  }
 `;

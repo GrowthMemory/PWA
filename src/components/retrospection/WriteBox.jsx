@@ -5,7 +5,6 @@ import { WriteContext } from "../context/context";
 export default function WriteBox(props) {
   const { retrospectionData, updateRetrospectionData } =
     useContext(WriteContext);
-  console.log(retrospectionData);
   return (
     <>
       <Title>{props.children}</Title>
@@ -39,12 +38,6 @@ const Title = styled.div`
   font-weight: 600;
   display: flex;
   align-items: center;
-
-  .icon {
-    width: 24px;
-    height: 24px;
-    color: #5ac479;
-  }
 `;
 const TextArea = styled.textarea`
   padding: 5px;

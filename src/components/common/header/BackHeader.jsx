@@ -7,12 +7,8 @@ export default function BackHeader(props) {
   return (
     <Div>
       <div>
-        {location.pathname.replace("/", "") == "SignUp" && (
-          <RxCross1 className="close" />
-        )}
-        {location.pathname.replace("/", "") == "CreateName" && (
-          <BsChevronLeft className="back" />
-        )}
+        {location.pathname.replace("/", "") == "SignUp" && <CloseIcon />}
+        {location.pathname.replace("/", "") == "CreateName" && <BackIcon />}
       </div>
     </Div>
   );
@@ -23,15 +19,16 @@ const Div = styled.div`
   width: 360px;
   height: 56px;
   position: relative;
+`;
 
-  .close {
-    font-size: 26px;
-    position: absolute;
-    right: 24px;
-  }
-  .back {
-    font-size: 26px;
-    position: absolute;
-    left: 24px;
-  }
+const CloseIcon = styled(RxCross1)`
+  font-size: 26px;
+  position: absolute;
+  right: 24px;
+`;
+
+const BackIcon = styled(BsChevronLeft)`
+  font-size: 26px;
+  position: absolute;
+  left: 24px;
 `;

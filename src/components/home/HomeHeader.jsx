@@ -13,7 +13,7 @@ export default function HomeHeader() {
   return (
     <Div>
       <Span>
-        회고 <span className="dayNumber">{retrospectionNumber}</span>일차
+        회고 <DayNumber>{retrospectionNumber}</DayNumber>일차
       </Span>
       <Ptext>
         {wiseSaying.txt} -{wiseSaying.author}-
@@ -43,12 +43,12 @@ const Span = styled.span`
   color: #636366;
   font-size: 20px;
   font-weight: 500;
+`;
 
-  .dayNumber {
-    color: #5ac479;
-    font-size: 34px;
-    font-weight: 700;
-  }
+const DayNumber = styled.span`
+  color: #5ac479;
+  font-size: 34px;
+  font-weight: 700;
 `;
 
 const Ptext = styled.p`

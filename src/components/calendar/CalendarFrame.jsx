@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import styled from "styled-components";
 import CalendarFunction from "./CalendarFunction";
 import { IoTriangle } from "react-icons/io5";
-import InputCalendar from "../retrospection/InputCalendar";
+import InputCalendar from "../common/InputCalendar";
 import WriteProvider from "../provider/WriteProvider";
 export default function CalendarFrame() {
   const {
@@ -23,7 +23,7 @@ export default function CalendarFrame() {
         <span>
           {selectDate.year}년{selectDate.month}월
         </span>
-        <IoTriangle className="calendarBtn" />
+        <CalendarBtn />
       </DateBox>
       <WriteProvider>
         <InputCalendar />
@@ -33,11 +33,11 @@ export default function CalendarFrame() {
           <tr>
             {days.map((x, n) =>
               x == "일" ? (
-                <th key={n} className="sun">
+                <th key={n} style={{ color: "red" }}>
                   {x}
                 </th>
               ) : x == "토" ? (
-                <th key={n} className="sat">
+                <th key={n} style={{ color: "blue" }}>
                   {x}
                 </th>
               ) : (
@@ -51,7 +51,7 @@ export default function CalendarFrame() {
             <tr key={n}>
               {week.map((date, n2) =>
                 date == 0 ? (
-                  <td key={n2} className="none"></td>
+                  <td key={n2} style={{ visibility: "hidden" }}></td>
                 ) : (
                   <td key={n2}>
                     <div>
@@ -86,12 +86,12 @@ const DateBox = styled.div`
   justify-content: center;
   align-items: center;
   background-color: aqua;
+`;
 
-  .calendarBtn {
-    margin-left: 4px;
-    font-size: 12px;
-    transform: rotate(180deg);
-  }
+const CalendarBtn = styled(IoTriangle)`
+  margin-left: 4px;
+  font-size: 12px;
+  transform: rotate(180deg);
 `;
 
 const Table = styled.table`
@@ -120,12 +120,6 @@ const Thead = styled.thead`
     width: 15px;
     height: 20px;
     font-weight: 400;
-  }
-  .sun {
-    color: red;
-  }
-  .sat {
-    color: blue;
   }
 `;
 
@@ -159,8 +153,5 @@ const Tbody = styled.tbody`
     margin-top: 5px;
     font-size: 8px;
     font-weight: 500;
-  }
-  .none {
-    visibility: hidden;
   }
 `;
