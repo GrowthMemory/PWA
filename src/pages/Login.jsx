@@ -1,13 +1,15 @@
+import { useLocation } from "react-router-dom";
 import HeaderBox from "../components/common/header/HeaderBox";
 import { signInWithGoogle } from "../service/auth";
 import { FcGoogle } from "react-icons/fc";
 import styled from "styled-components";
 
 export default function Login() {
+  const location = useLocation().pathname;
   return (
     <Div>
       <HeaderBox>
-        <span className="title">Growth Memory</span>
+        <Title location={location}>Growth Memory</Title>
         <sub>오늘도 성장하는 나를 위해</sub>
       </HeaderBox>
       <Btn
@@ -15,7 +17,7 @@ export default function Login() {
           signInWithGoogle();
         }}
       >
-        <FcGoogle className="googleLogo" />
+        <GoogleIcon />
         구글 로그인/회원가입
       </Btn>
     </Div>
@@ -44,10 +46,18 @@ const Btn = styled.button`
   position: relative;
   bottom: 30px;
   background-color: #fff;
+`;
 
-  .googleLogo {
-    font-size: 20px;
-    position: absolute;
-    left: 16px;
-  }
+const Title = styled.span`
+  color: ${(props) => (props.location == "/Login" ? "#5ac479" : "#f9f9f9")};
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 150%;
+  font-family: "yg-jalnan";
+`;
+
+const GoogleIcon = styled(FcGoogle)`
+  font-size: 20px;
+  position: absolute;
+  left: 16px;
 `;

@@ -9,35 +9,40 @@ import Button from "../components/common/Button";
 export default function CreateName() {
   const [inputText, setInputText] = useState("");
   return (
-    <SignUpProvider>
+    <>
       <BackHeader />
       <Section>
         <HeaderBox>
           <Img src={"img/tree.png"} alt="" />
-          <div className="text">
+          <TextBox>
             <span>서비스에서 불리고 싶은</span>
             <span>닉네임을 알려주세요</span>
-          </div>
+          </TextBox>
         </HeaderBox>
-        <Div>
-          <div>
-            <InputBox>
-              <Input
-                type="text"
-                maxLength={10}
-                placeholder="닉네임을 입력해주세요"
-                onChange={(e) => {
-                  setInputText(e.target.value);
-                }}
-              />
-              <OverlapButton inputText={inputText} overLapText={overLapText} />
-            </InputBox>
-            <OverlapSpan overLapText={overLapText} />
-          </div>
-        </Div>
-        <Button text={"next"} className={"serch_box"} />
+        <SignUpProvider>
+          <Div>
+            <div>
+              <InputBox>
+                <Input
+                  type="text"
+                  maxLength={10}
+                  placeholder="닉네임을 입력해주세요"
+                  onChange={(e) => {
+                    setInputText(e.target.value);
+                  }}
+                />
+                <OverlapButton
+                  inputText={inputText}
+                  overLapText={overLapText}
+                />
+              </InputBox>
+              <OverlapSpan overLapText={overLapText} />
+            </div>
+          </Div>
+          <Button text={"next"} />
+        </SignUpProvider>
       </Section>
-    </SignUpProvider>
+    </>
   );
 }
 
@@ -95,4 +100,12 @@ const Img = styled.img`
   margin-right: 10px;
   width: 20px;
   height: 38px;
+`;
+
+const TextBox = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;

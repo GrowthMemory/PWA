@@ -32,21 +32,6 @@ const TextBox = styled.div`
     props.location == "/" || props.location == "/Login" ? "column" : ""};
   align-items: center;
 
-  .text {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .title {
-    color: ${(props) => (props.location == "/Login" ? "#5ac479" : "#f9f9f9")};
-    font-size: 34px;
-    font-weight: 700;
-    line-height: 150%;
-    font-family: "yg-jalnan";
-  }
   sub {
     color: ${(props) => (props.location == "/Login" ? "#5ac479" : "#f9f9f9")};
     font-size: 16px;

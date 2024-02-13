@@ -9,42 +9,49 @@ import { LuPencilLine } from "react-icons/lu";
 import { FaAngleRight } from "react-icons/fa6";
 import { BsPinAngleFill } from "react-icons/bs";
 import { IoRibbonSharp } from "react-icons/io5";
+import { useEffect } from "react";
+import { SELECTDATE } from "../components/common/key";
 export default function Home() {
   const navigate = useNavigate();
+  useEffect(() => {
+    localStorage.removeItem(SELECTDATE);
+  });
   return (
-    <HomeProvider>
-      <HomeHeader />
-      <Section>
-        <Btn
-          onClick={() => {
-            navigate("/Write");
-          }}
-        >
-          <LuPencilLine className="leftIcon" />
-          오늘의 회고를 작성해주세요
-          <FaAngleRight className="rigntIcon" />
-        </Btn>
-        <CalendarDiv>
-          <div className="title">
-            <span>
-              <BsPinAngleFill className="pinIcon" /> 얼마나 꾸준히 했는지
-              살펴보세요
-            </span>
-          </div>
-          <SteadyCalendar />
-        </CalendarDiv>
-        <PerformanceDiv>
-          <div className="title">
-            <span>
-              <IoRibbonSharp className="medalIcon" />
-              성과를 확인해보세요
-            </span>
-          </div>
-          <Performance />
-        </PerformanceDiv>
-      </Section>
-      <Navigation />
-    </HomeProvider>
+    <>
+      {" "}
+      <HomeProvider>
+        <HomeHeader />
+        <Section>
+          <Btn
+            onClick={() => {
+              navigate("/Write");
+            }}
+          >
+            <LeftIcon />
+            오늘의 회고를 작성해주세요
+            <RightIcon />
+          </Btn>
+          <CalendarDiv>
+            <Title>
+              <span>
+                <PinIcon /> 얼마나 꾸준히 했는지 살펴보세요
+              </span>
+            </Title>
+            <SteadyCalendar />
+          </CalendarDiv>
+          <PerformanceDiv>
+            <Title>
+              <span>
+                <MedalIcon />
+                성과를 확인해보세요
+              </span>
+            </Title>
+            <Performance />
+          </PerformanceDiv>
+        </Section>
+        <Navigation />
+      </HomeProvider>
+    </>
   );
 }
 
@@ -69,51 +76,46 @@ const Btn = styled.button`
   align-items: center;
   position: relative;
   background-color: #5ac479;
+`;
+const LeftIcon = styled(LuPencilLine)`
+  margin: 0 14px 0 17px;
+`;
 
-  .leftIcon {
-    margin: 0 14px 0 17px;
-  }
-  .rigntIcon {
-    position: absolute;
-    right: 12px;
-  }
+const RightIcon = styled(FaAngleRight)`
+  position: absolute;
+  right: 12px;
 `;
 
 const CalendarDiv = styled.div`
   margin-bottom: 26px;
   width: 312px;
   height: 200px;
+`;
 
-  .title {
-    width: 100%;
-    height: 30px;
-    font-size: 16px;
-    font-weight: 600;
-  }
-  .pinIcon {
-    margin-right: 2px;
-    color: red;
-    font-size: 18px;
-    position: relative;
-    top: 4px;
-  }
+const Title = styled.div`
+  width: 100%;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 600;
+`;
+
+const PinIcon = styled(BsPinAngleFill)`
+  margin-right: 2px;
+  color: red;
+  font-size: 18px;
+  position: relative;
+  top: 4px;
 `;
 
 const PerformanceDiv = styled.div`
   width: 312px;
   height: 110px;
+`;
 
-  .title {
-    width: 100%;
-    height: 30px;
-    font-size: 16px;
-    font-weight: 600;
-  }
-  .medalIcon {
-    margin-right: 2px;
-    color: #ecef5a;
-    font-size: 18px;
-    position: relative;
-    top: 4px;
-  }
+const MedalIcon = styled(IoRibbonSharp)`
+  margin-right: 2px;
+  color: #ecef5a;
+  font-size: 18px;
+  position: relative;
+  top: 4px;
 `;

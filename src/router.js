@@ -7,6 +7,7 @@ import CollectPersonalData from "./pages/CollectPersonalData";
 import Splash from "./pages/Splash";
 import Home from "./pages/Home";
 import Retrospection from "./pages/Retrospection";
+import Calendar from "./pages/Calendar";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "/Write",
     element: <Retrospection />,
+  },
+  {
+    path: "/Calendar",
+    element: <Calendar />,
   },
 ]);
 

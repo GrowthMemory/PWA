@@ -8,8 +8,8 @@ export default function Terms(props) {
   return (
     <Box>
       <Header checked={isChecked[props.num].checked}>
-        <IoCheckmarkOutline
-          className="checkIcon"
+        <CheckIcon
+          checked={isChecked[props.num].checked}
           onClick={(e) => {
             updateIsChecked((update) => {
               update[props.num].checked = !update[props.num].checked;
@@ -47,11 +47,11 @@ const Header = styled.div`
   font-weight: 600;
   display: flex;
   align-items: center;
+`;
 
-  .checkIcon {
-    font-size: 24px;
-    color: ${(props) => (props.checked ? "#5AC479" : "#C6C6C6")};
-  }
+const CheckIcon = styled(IoCheckmarkOutline)`
+  font-size: 24px;
+  color: ${(props) => (props.checked ? "#5AC479" : "#C6C6C6")};
 `;
 
 const CheckBox = styled.input`
