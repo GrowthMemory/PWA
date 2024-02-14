@@ -15,7 +15,6 @@ export default function BackHeader(props) {
 }
 
 const Div = styled.div`
-  margin-top: 44px;
   width: 360px;
   height: 56px;
   position: relative;
@@ -24,11 +23,13 @@ const Div = styled.div`
 const CloseIcon = styled(RxCross1)`
   font-size: 26px;
   position: absolute;
+  top: 10px;
   right: 24px;
 `;
 
 const BackIcon = styled(BsChevronLeft)`
   font-size: 26px;
   position: absolute;
+  top: 10px;
   left: 24px;
 `;

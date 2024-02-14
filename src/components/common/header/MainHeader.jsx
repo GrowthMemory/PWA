@@ -12,7 +12,11 @@ export default function MainHeader(props) {
 
 const Div = styled.div`
   margin: ${(props) =>
-    props.location == "/Write" ? "44px 0 40px 0" : "44px 0 31px 0"};
+    props.location == "/Write"
+      ? "0 0 40px 0"
+      : props.location == "/Calendar"
+      ? "0 0 31px 0"
+      : "0 0 21px 0"};
   width: 360px;
   height: 56px;
   font-size: 16px;

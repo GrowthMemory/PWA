@@ -33,7 +33,7 @@ async function getWiseSaying(setWiseSaying) {
 }
 
 const Div = styled.div`
-  margin-top: 63px;
+  margin-top: 20px;
   width: 100%;
   height: 100px;
 `;

@@ -17,11 +17,10 @@ export default function Home() {
     localStorage.removeItem(SELECTDATE);
   });
   return (
-    <>
-      {" "}
+    <HomeBox>
       <HomeProvider>
         <HomeHeader />
-        <Section>
+        <Div>
           <Btn
             onClick={() => {
               navigate("/Write");
@@ -48,14 +47,22 @@ export default function Home() {
             </Title>
             <Performance />
           </PerformanceDiv>
-        </Section>
+        </Div>
         <Navigation />
       </HomeProvider>
-    </>
+    </HomeBox>
   );
 }
 
-const Section = styled.section`
+const HomeBox = styled.section`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
+const Div = styled.div`
   width: 100%;
   height: 421px;
   display: flex;

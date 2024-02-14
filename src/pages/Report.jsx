@@ -8,7 +8,7 @@ import CurrentStatus from "../components/report/CurrentStatus";
 
 export default function Report() {
   return (
-    <>
+    <ReportBox>
       <MainHeader>
         <span>분석 리포트</span>
       </MainHeader>
@@ -20,10 +20,18 @@ export default function Report() {
         </Div>
       </ReportProvider>
       <Navigation />
-    </>
+    </ReportBox>
   );
 }
 
+const ReportBox = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
 const Div = styled.div`
   width: 100%;
   height: 463px;
