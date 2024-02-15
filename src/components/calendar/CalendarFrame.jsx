@@ -6,6 +6,7 @@ import { IoTriangle } from "react-icons/io5";
 import InputCalendar from "../common/InputCalendar";
 import GoingRetrospection from "./GoingRetrospection";
 import { SELECTDATE } from "../common/key";
+import { useLocation } from "react-router-dom";
 export default function CalendarFrame() {
   const {
     currentDate,
@@ -17,7 +18,8 @@ export default function CalendarFrame() {
     setShowModal,
   } = useContext(CalendarContext);
   const { retrospectionData } = useContext(WriteContext);
-  const dates = CalendarFunction(currentDate, nextMonth, prevMonth);
+  const location = useLocation().pathname;
+  const dates = CalendarFunction(currentDate, nextMonth, prevMonth, location);
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   return (
     <Div>

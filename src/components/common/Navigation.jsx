@@ -15,7 +15,10 @@ export default function Navigation() {
         style={location == "/Home" ? { color: "#5ac479" } : ""}
         onClick={() => navigate("/Home")}
       />
-      <PiChartLine style={location == "/Report" ? { color: "#5ac479" } : ""} />
+      <PiChartLine
+        style={location == "/Report" ? { color: "#5ac479" } : ""}
+        onClick={() => navigate("/Report")}
+      />
       <FaCalendar
         style={location == "/Calendar" ? { color: "#5ac479" } : ""}
         onClick={() => navigate("/Calendar")}

@@ -8,6 +8,7 @@ import Splash from "./pages/Splash";
 import Home from "./pages/Home";
 import Retrospection from "./pages/Retrospection";
 import Calendar from "./pages/Calendar";
+import Report from "./pages/Report";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
   {
     path: "/Calendar",
     element: <Calendar />,
+  },
+  {
+    path: "/Report",
+    element: <Report />,
   },
 ]);
 
