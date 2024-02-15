@@ -1,16 +1,11 @@
 import { useContext } from "react";
 import { SignUpContext } from "../context/context";
-import styled from "styled-components";
-
+import * as s from "../css/createName/createName";
 export default function OverlapSpan(props) {
   const { overlapCheck } = useContext(SignUpContext);
   return (
     <>
-      <Span>{props.overLapText.span[overlapCheck]}</Span>
+      <s.Span>{props.overLapText.span[overlapCheck]}</s.Span>
     </>
   );
 }
-const Span = styled.span`
-  margin-left: 12px;
-  font-size: 12px;
-`;

@@ -1,14 +1,13 @@
-import styled from "styled-components";
-import { IoCheckmarkOutline } from "react-icons/io5";
 import { useContext } from "react";
 import { SignUpContext } from "../context/context";
+import * as s from "../css/common/terms";
 export default function Terms(props) {
   const { setAgreement, updateIsChecked, isChecked } =
     useContext(SignUpContext);
   return (
-    <Box>
-      <Header checked={isChecked[props.num].checked}>
-        <CheckIcon
+    <s.Box>
+      <s.Header checked={isChecked[props.num].checked}>
+        <s.CheckIcon
           checked={isChecked[props.num].checked}
           onClick={(e) => {
             updateIsChecked((update) => {
@@ -22,9 +21,9 @@ export default function Terms(props) {
           }}
         />
         <span>{props.text}</span>
-        <Essential>{"(필수)"}</Essential>
-      </Header>
-      <TextBox>
+        <s.Essential>{"(필수)"}</s.Essential>
+      </s.Header>
+      <s.TextBox>
         <p>
           약관이 들어갑니다약관이 들어갑니다약관이 들어갑니다약관이
           들어갑니다약관이 들어갑니다약관이 들어갑니다약관이 들어갑니다약관이
@@ -32,53 +31,7 @@ export default function Terms(props) {
           들어갑니다약관이 들어갑니다약관이 들어갑니다약관이 들어갑니다약관이
           들어갑니다약관이 들어갑니다
         </p>
-      </TextBox>
-    </Box>
+      </s.TextBox>
+    </s.Box>
   );
 }
-const Box = styled.div`
-  width: 293px;
-  height: 86px;
-`;
-const Header = styled.div`
-  width: 293px;
-  height: 25px;
-  font-size: 13px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-`;
-
-const CheckIcon = styled(IoCheckmarkOutline)`
-  font-size: 24px;
-  color: ${(props) => (props.checked ? "#5AC479" : "#C6C6C6")};
-`;
-
-const CheckBox = styled.input`
-  appearance: none;
-  background-image: url(${`${process.env.PUBLIC_URL}/img/check.png`});
-  width: 24px;
-  height: 24px;
-
-  &:checked {
-    width: 24px;
-    height: 25px;
-    background-image: url(${`${process.env.PUBLIC_URL}/img/checked.png`});
-    position: relative;
-    top: 1px;
-  }
-`;
-
-const Essential = styled.span`
-  margin-left: 2px;
-  color: #5ac479;
-`;
-const TextBox = styled.div`
-  width: 293px;
-  height: 50px;
-  border-radius: 5.707px;
-  border: 1px solid #e3e3e3;
-  font-size: 11px;
-  line-height: 17px;
-  overflow: hidden;
-`;

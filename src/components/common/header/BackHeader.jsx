@@ -1,35 +1,13 @@
-import styled from "styled-components";
-import { RxCross1 } from "react-icons/rx";
-import { BsChevronLeft } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
+import * as s from "../../css/common/backHeader";
 export default function BackHeader(props) {
   let location = useLocation();
   return (
-    <Div>
+    <s.Div>
       <div>
-        {location.pathname.replace("/", "") == "SignUp" && <CloseIcon />}
-        {location.pathname.replace("/", "") == "CreateName" && <BackIcon />}
+        {location.pathname.replace("/", "") == "SignUp" && <s.CloseIcon />}
+        {location.pathname.replace("/", "") == "CreateName" && <s.BackIcon />}
       </div>
-    </Div>
+    </s.Div>
   );
 }
-
-const Div = styled.div`
-  width: 360px;
-  height: 56px;
-  position: relative;
-`;
-
-const CloseIcon = styled(RxCross1)`
-  font-size: 26px;
-  position: absolute;
-  top: 10px;
-  right: 24px;
-`;
-
-const BackIcon = styled(BsChevronLeft)`
-  font-size: 26px;
-  position: absolute;
-  top: 10px;
-  left: 24px;
-`;

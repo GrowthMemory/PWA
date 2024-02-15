@@ -1,8 +1,8 @@
-import styled from "styled-components";
 import Chart from "react-google-charts";
 import { useContext, useEffect } from "react";
 import { ReportContext } from "../context/context";
 import * as O from "./chartOption";
+import * as s from "../css/report/chart";
 export default function ChartBox() {
   const {
     lineData,
@@ -24,72 +24,24 @@ export default function ChartBox() {
   }, [currentCategory]);
 
   return (
-    <Div>
-      <RetrospectionNumber>
+    <s.Div>
+      <s.RetrospectionNumber>
         기간 내, <span>{retrospectionNum}</span>번 회고 했어요
-      </RetrospectionNumber>
-      <Title>얼마나 만족스러운 회고를 했나요 ?</Title>
-      <LineChart className="c1">
+      </s.RetrospectionNumber>
+      <s.Title>얼마나 만족스러운 회고를 했나요 ?</s.Title>
+      <s.LineChart className="c1">
         <Chart chartType="LineChart" data={lineData} options={O.lineOptions} />
-      </LineChart>
-      <ChartColor className="c2">
+      </s.LineChart>
+      <s.ChartColor className="c2">
         <Chart
           chartType="CandlestickChart"
           data={feelingData}
           options={O.feelingOption}
         />
-      </ChartColor>
-    </Div>
+      </s.ChartColor>
+    </s.Div>
   );
 }
-
-const Div = styled.div`
-  z-index: 1;
-`;
-
-const RetrospectionNumber = styled.p`
-  width: 100%;
-  height: 28px;
-  font-size: 13px;
-  font-weight: 400px;
-
-  span {
-    color: #5ac479;
-    font-size: 17px;
-    font-weight: 700;
-  }
-`;
-const Title = styled.p`
-  width: 177px;
-  height: 28px;
-  font-size: 13px;
-  font-weight: 600;
-`;
-
-const LineChart = styled.div`
-  padding-left: 5px;
-  width: 300px;
-  height: 208px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  z-index: 1;
-`;
-
-const ChartColor = styled.div`
-  padding-left: 5px;
-  width: 300px;
-  height: 208px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  background: #fff;
-  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
-`;
 
 async function fetchFunc(
   updateLineData,

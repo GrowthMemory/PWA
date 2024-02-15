@@ -1,13 +1,12 @@
-import styled from "styled-components";
 import { SignUpContext } from "../context/context";
 import { useContext } from "react";
-
+import * as s from "../css/createName/createName";
 export default function OverlapButton(props) {
   const { overlapCheck } = useContext(SignUpContext);
 
   return (
     <>
-      <Btn
+      <s.Btn
         state={overlapCheck}
         onClick={() => {
           fetchFunc(props.inputText);
@@ -15,7 +14,7 @@ export default function OverlapButton(props) {
         disabled={props.inputText.length >= 2 ? false : true}
       >
         {props.overLapText.btn[overlapCheck]}
-      </Btn>
+      </s.Btn>
     </>
   );
 }
@@ -33,18 +32,3 @@ async function fetchFunc(inputText) {
     console.log(err);
   }
 }
-
-const Btn = styled.button`
-  margin-right: 7px;
-  width: 50px;
-  height: 24px;
-  border-radius: 7px;
-  border: none;
-  font-size: 10px;
-  color: #fff;
-  background-color: ${(props) => {
-    if (props.state == "none") return "#8E8E93";
-    else if (props.state == "false") return "#DC2424";
-    else return "#5AC479";
-  }};
-`;

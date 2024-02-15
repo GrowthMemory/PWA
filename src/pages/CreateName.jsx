@@ -1,29 +1,29 @@
 import { useState } from "react";
-import styled from "styled-components";
 import SignUpProvider from "../components/provider/SignUpPovider";
 import BackHeader from "../components/common/header/BackHeader";
 import HeaderBox from "../components/common/header/HeaderBox";
 import OverlapButton from "../components/createName/OverlapButton";
 import OverlapSpan from "../components/createName/OverlapSpan";
 import Button from "../components/common/Button";
+import * as s from "../components/css/createName/createName";
 export default function CreateName() {
   const [inputText, setInputText] = useState("");
   return (
     <>
       <BackHeader />
-      <Section>
+      <s.Section>
         <HeaderBox>
-          <Img src={"img/tree.png"} alt="" />
-          <TextBox>
+          <s.Img src={"img/tree.png"} alt="" />
+          <s.TextBox>
             <span>서비스에서 불리고 싶은</span>
             <span>닉네임을 알려주세요</span>
-          </TextBox>
+          </s.TextBox>
         </HeaderBox>
         <SignUpProvider>
-          <Div>
+          <s.Div>
             <div>
-              <InputBox>
-                <Input
+              <s.InputBox>
+                <s.Input
                   type="text"
                   maxLength={10}
                   placeholder="닉네임을 입력해주세요"
@@ -35,13 +35,13 @@ export default function CreateName() {
                   inputText={inputText}
                   overLapText={overLapText}
                 />
-              </InputBox>
+              </s.InputBox>
               <OverlapSpan overLapText={overLapText} />
             </div>
-          </Div>
+          </s.Div>
           <Button text={"next"} />
         </SignUpProvider>
-      </Section>
+      </s.Section>
     </>
   );
 }
@@ -58,54 +58,3 @@ let overLapText = {
     true: "아쉽지만 다른 닉네임을 선택해주세요.",
   },
 };
-
-const Section = styled.section`
-  width: 360px;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const InputBox = styled.div`
-  width: 312px;
-  height: 42px;
-  border: 1px solid #e3e3e3;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Div = styled.div`
-  width: 360px;
-  height: 376px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Input = styled.input`
-  width: 80%;
-  height: 100%;
-  text-indent: 13px;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-`;
-
-const Img = styled.img`
-  margin: 0 10px 0 24px;
-  margin-right: 10px;
-  width: 20px;
-  height: 38px;
-`;
-
-const TextBox = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;

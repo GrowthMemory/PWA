@@ -1,8 +1,7 @@
-import styled from "styled-components";
 import { useContext } from "react";
 import { SignUpContext } from "../context/context";
 import { useNavigate } from "react-router-dom";
-import { IoCheckmarkOutline } from "react-icons/io5";
+import * as s from "../css/common/button";
 export default function Button(props) {
   const { agreement, setAgreement, updateIsChecked, signUpStep, overlapCheck } =
     useContext(SignUpContext);
@@ -11,7 +10,7 @@ export default function Button(props) {
 
   return (
     <>
-      <Btn
+      <s.Btn
         text={props.text}
         agreement={agreement}
         onClick={(e) => {
@@ -46,42 +45,14 @@ export default function Button(props) {
             : ""
         }
       >
-        {props.text == "agree" && <CheckIcon />}
+        {props.text == "agree" && <s.CheckIcon />}
         {btnText[props.text]}
-      </Btn>
+      </s.Btn>
     </>
   );
 }
+
 const btnText = {
   agree: "네, 모두 동의 합니다.",
   next: "다음",
 };
-
-const Btn = styled.button`
-  width: 280px;
-  height: ${(props) => (props.text == "agree" ? "46px" : "54px")};
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  color: ${(props) => (props.agreement != 3 ? "#aeaeb2" : "#FFF")};
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${(props) => {
-    if (props.agreement == 3) {
-      return "#5AC479";
-    } else {
-      return "#e3e3e3";
-    }
-  }};
-  &:disabled {
-    background-color: #e3e3e3;
-  }
-`;
-
-const CheckIcon = styled(IoCheckmarkOutline)`
-  font-size: 24px;
-  position: absolute;
-  left: 16px;
-`;
