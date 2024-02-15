@@ -3,7 +3,8 @@ import { FaSortDown } from "react-icons/fa";
 import styled from "styled-components";
 import { ReportContext } from "../context/context";
 import * as Func from "./categoryFunc";
-import ReportCalendar from "./ReportCalendar";
+import ReportCalendar from "../common/InputCalendar";
+import WriteProvider from "../provider/WriteProvider";
 export default function Category() {
   const {
     showCategoryBtn,
@@ -70,6 +71,7 @@ export default function Category() {
         <DateSelectBtn
           onClick={() => {
             setShowCalendar((prev) => !prev);
+            setCurrentCategory("custom");
           }}
         >
           기간 선택
@@ -85,7 +87,7 @@ export default function Category() {
           <span>{`${selcetDate.startDate.year}.${selcetDate.startDate.month}.${selcetDate.startDate.date}~${selcetDate.endDate.year}.${selcetDate.endDate.month}.${selcetDate.endDate.date}`}</span>
         </CurrentDate>
       )}
-      {showCalendar && <ReportCalendar />}
+      <WriteProvider>{showCalendar && <ReportCalendar />}</WriteProvider>
     </Div>
   );
 }

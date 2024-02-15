@@ -4,20 +4,24 @@ import CalendarProvider from "../components/provider/CalendarProvider";
 import MainHeader from "../components/common/header/MainHeader";
 import WriteBox from "../components/retrospection/WriteBox";
 import HeaderText from "../components/retrospection/HeaderText";
-import InputCalendar from "../components/common/InputCalendar";
+import InputCalendar from "../components/common/InutCalendar";
 import { HiLocationMarker } from "react-icons/hi";
 import { TiWarning } from "react-icons/ti";
+import ReportProvider from "../components/provider/ReportProvider";
+import ReportCalendar from "../components/common/InputCalendar";
+import { useState } from "react";
 
 export default function Retrospection() {
+  const [showCalendar, setShowCalendar] = useState(false);
   return (
     <RetrospectionBox>
       <WriteProvider>
         <MainHeader>
-          <HeaderText />
+          <HeaderText setShowCalendar={setShowCalendar} />
         </MainHeader>
-        <CalendarProvider>
-          <InputCalendar />
-        </CalendarProvider>
+        <ReportProvider>
+          {showCalendar && <ReportCalendar setShowCalendar={setShowCalendar} />}
+        </ReportProvider>
         <Div>
           <WriteBox id={"keep"}>
             <KeepIcon />
