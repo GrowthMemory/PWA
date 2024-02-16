@@ -7,13 +7,14 @@ export const Btn = styled.button`
   border: none;
   border-radius: 10px;
   font-size: 16px;
-  color: ${(props) => (props.agreement != 3 ? "#aeaeb2" : "#FFF")};
+  color: ${(props) =>
+    props.agreement == 3 || props.overlapCheck == true ? "#FFF" : "#aeaeb2"};
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: ${(props) => {
-    if (props.agreement == 3) {
+    if (props.agreement == 3 || props.overlapCheck == true) {
       return "#5AC479";
     } else {
       return "#e3e3e3";

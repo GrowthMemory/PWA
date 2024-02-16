@@ -1,18 +1,19 @@
 import { useContext } from "react";
-import { SignUpContext } from "../context/context";
+import { MyPageContext, SignUpContext } from "../context/context";
 import { useNavigate } from "react-router-dom";
 import * as s from "../css/common/button";
 export default function Button(props) {
   const { agreement, setAgreement, updateIsChecked, signUpStep, overlapCheck } =
     useContext(SignUpContext);
+  const { userName, setUserName } = useContext(MyPageContext);
 
   const navigate = useNavigate();
-
   return (
     <>
       <s.Btn
         text={props.text}
         agreement={agreement}
+        overlapCheck={overlapCheck}
         onClick={(e) => {
           if (props.text == "agree" && agreement != 3) {
             setAgreement(3);
@@ -32,6 +33,12 @@ export default function Button(props) {
           if (props.text == "next" && agreement == 3) {
             navigate("/CreateName");
           }
+          if (signUpStep == "CreateName") {
+            navigate("/Home");
+          }
+          if (userName != null) {
+            navigate("/MyPage");
+          }
         }}
         disabled={
           props.text == "next"
@@ -39,7 +46,7 @@ export default function Button(props) {
               ? agreement == 3
                 ? false
                 : true
-              : overlapCheck == "true"
+              : overlapCheck == true
               ? false
               : true
             : ""
