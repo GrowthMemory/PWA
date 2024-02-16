@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const Div = styled.div`
   width: 360px;
-  height: 596px;
+  height: 640px;
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 44px;
+  top: 0;
   z-index: 2;
 `;
 
