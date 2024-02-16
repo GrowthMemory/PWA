@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Retrospection from "./pages/Retrospection";
 import Calendar from "./pages/Calendar";
 import Report from "./pages/Report";
+import MyPage from "./pages/MyPage";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: "/Report",
     element: <Report />,
+  },
+  {
+    path: "/MyPage",
+    element: <MyPage />,
   },
 ]);
 
