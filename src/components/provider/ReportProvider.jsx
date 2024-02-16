@@ -11,6 +11,15 @@ export default function ReportProvider(props) {
   const [prevMonth, setPreveMonth] = useState(1);
   const [clicked, updateClicked] = useImmer([]);
   const [showCalendar, setShowCalendar] = useState(false);
+  const [lineData, updateLineData] = useImmer([["date", "emotional figures"]]);
+  const [feelingData, updateFeelingData] = useImmer([
+    ["day", "num", "num", "num", "num"],
+  ]);
+  const [retrospectionNum, setRetrospection] = useState(0);
+  const [currentStatusObj, setCurrentStatusObj] = useImmer({
+    score: 80,
+    text: "안정적인",
+  });
   return (
     <ReportContext.Provider
       value={{
@@ -28,6 +37,14 @@ export default function ReportProvider(props) {
         updateClicked,
         showCalendar,
         setShowCalendar,
+        lineData,
+        updateLineData,
+        feelingData,
+        updateFeelingData,
+        retrospectionNum,
+        setRetrospection,
+        currentStatusObj,
+        setCurrentStatusObj,
       }}
     >
       {props.children}

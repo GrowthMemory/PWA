@@ -1,7 +1,7 @@
-import styled from "styled-components";
 import * as func from "./steadyCalendarFunction";
 import { useContext, useEffect } from "react";
 import { HomeContext } from "../context/context";
+import * as s from "../css/home/steadyCalendar";
 
 export default function SteadyCalendar() {
   const { retrospectionData, setRetrospectionData, setRetrospectionNumber } =
@@ -12,7 +12,7 @@ export default function SteadyCalendar() {
   let monthArr = func.createMonthArr(dateArr);
 
   useEffect(() => {
-    getRetrospectionData();
+    getRetrospectionData(setRetrospectionData, setRetrospectionNumber);
   }, []);
 
   let date = [];
@@ -22,152 +22,72 @@ export default function SteadyCalendar() {
     date.push(temp.split(" "));
   });
 
-  async function getRetrospectionData() {
-    try {
-      const response = await fetch("dumy/test.json");
-      const data = await response.json();
-      setRetrospectionData(() => {
-        let temp = data.data;
-        return temp;
-      });
-      setRetrospectionNumber(data.data.length);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  function checkFunc(n2, n, d) {
-    let mon = n;
-    if (n2 >= 3 && d < 10) mon += 2;
-    else mon += 1;
-    let check = "";
-    for (let i = 0; i < date.length; i++) {
-      if (date[i][1] == mon && date[i][2] == d && date[i][0] == currentYear) {
-        check = "check";
-        break;
-      }
-    }
-    return check;
-  }
-
   return (
-    <Div>
-      <DayBox>
+    <s.Div>
+      <s.DayBox>
         {dayArr.map((day, n) => (
           <span key={day + n}>{day}</span>
         ))}
-      </DayBox>
-      <CalenderBox>
-        <MonthBox>
+      </s.DayBox>
+      <s.CalenderBox>
+        <s.MonthBox>
           {monthArr.map((month, monthNum) => (
-            <Month key={month}>
+            <s.Month key={month}>
               <span>{monthNum + 1 + "월"}</span>
-              <WeekBox>
+              <s.WeekBox>
                 {month.map((week, weekNum) => (
-                  <Week key={week}>
+                  <s.Week key={week}>
                     {week.map((day) => {
-                      return checkFunc(weekNum, monthNum, day) == "check" ? (
-                        <Checked key={day}></Checked>
+                      return checkFunc(
+                        weekNum,
+                        monthNum,
+                        day,
+                        date,
+                        currentYear
+                      ) == "check" ? (
+                        <s.Checked key={day}></s.Checked>
                       ) : (
-                        <DateBox key={day}></DateBox>
+                        <s.DateBox key={day}></s.DateBox>
                       );
                     })}
-                  </Week>
+                  </s.Week>
                 ))}
-              </WeekBox>
-            </Month>
+              </s.WeekBox>
+            </s.Month>
           ))}
-        </MonthBox>
-      </CalenderBox>
-    </Div>
+        </s.MonthBox>
+      </s.CalenderBox>
+    </s.Div>
   );
 }
 
-const Div = styled.div`
-  width: 312px;
-  height: 171px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
-  background-color: #fff;
-
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+async function getRetrospectionData(
+  setRetrospectionData,
+  setRetrospectionNumber
+) {
+  try {
+    const response = await fetch("dumy/test.json");
+    const data = await response.json();
+    setRetrospectionData(() => {
+      let temp = data.data;
+      return temp;
+    });
+    setRetrospectionNumber(data.data.length);
+  } catch (err) {
+    console.log(err);
   }
-  &::-webkit-scrollbar-thumb {
-    background-color: #636366;
-    border-radius: 10px;
+}
+
+function checkFunc(n2, n, d, date, currentYear) {
+  let mon = n;
+  if (n2 >= 3 && d < 10) mon += 2;
+  else mon += 1;
+  let check = "";
+  for (let i = 0; i < date.length; i++) {
+    if (date[i][1] == mon && date[i][2] == d && date[i][0] == currentYear) {
+      check = "check";
+      break;
+    }
   }
-`;
-
-const CalenderBox = styled.div`
-  width: 310px;
-  height: 170px;
-  display: flex;
-  overflow-x: scroll;
-
-  .check {
-    background-color: #5ac479;
-  }
-`;
-
-const MonthBox = styled.div`
-  margin: 8px 0 0 0;
-  width: 100%;
-  height: 152px;
-  display: flex;
-  align-items: center;
-`;
-const Month = styled.div`
-  width: auto;
-  height: 135px;
-  display: flex;
-  flex-direction: column;
-
-  span {
-    font-size: 11px;
-  }
-`;
-
-const WeekBox = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
-const Week = styled.div`
-  width: 17px;
-  height: 100%;
-`;
-
-const DateBox = styled.div`
-  margin: 2px;
-  width: 15px;
-  height: 15px;
-  border-radius: 5px;
-  background-color: #e3e3e3;
-`;
-
-const Checked = styled.div`
-  margin: 2px;
-  width: 15px;
-  height: 15px;
-  border-radius: 5px;
-  background-color: #5ac479;
-`;
-
-const DayBox = styled.div`
-  margin: 32px 0 0 5px;
-  width: 20px;
-  height: 120px;
-  display: flex;
-  flex-direction: column;
-  font-size: 11px;
-
-  span {
-    margin: 0 0 4px 0;
-  }
-`;
+  return check;
+}

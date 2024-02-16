@@ -76,7 +76,7 @@ export default function CalendarFunction(
         }
       }
     }
-  } else if (location == "/Report") {
+  } else if (location == "/Report" || location == "/Write") {
     for (let i = -monthStartDay + 1; i <= endDate + calenderLastDate; i++) {
       if (counter2 == 7) {
         counter++;

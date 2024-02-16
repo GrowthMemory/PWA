@@ -1,13 +1,13 @@
-import styled from "styled-components";
 import CalendarFrame from "../components/calendar/CalendarFrame";
 import Navigation from "../components/common/Navigation";
 import MainHeader from "../components/common/header/MainHeader";
 import CalendarProvider from "../components/provider/CalendarProvider";
 import WriteProvider from "../components/provider/WriteProvider";
+import * as s from "../components/css/calendar/calendar";
 
 export default function Calendar() {
   return (
-    <CalendarBox>
+    <s.CalendarBox>
       <MainHeader>
         <span>캘린더</span>
       </MainHeader>
@@ -17,15 +17,6 @@ export default function Calendar() {
         </CalendarProvider>
       </WriteProvider>
       <Navigation />
-    </CalendarBox>
+    </s.CalendarBox>
   );
 }
-
-const CalendarBox = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-`;

@@ -5,12 +5,13 @@ import { FaCalendar } from "react-icons/fa";
 import { BsChatFill } from "react-icons/bs";
 import { IoMdSettings } from "react-icons/io";
 import { useLocation, useNavigate } from "react-router-dom";
+import * as s from "../css/common/navigation";
 
 export default function Navigation() {
   const location = useLocation().pathname;
   const navigate = useNavigate();
   return (
-    <Div>
+    <s.Div>
       <MdHome
         style={location == "/Home" ? { color: "#5ac479" } : ""}
         onClick={() => navigate("/Home")}
@@ -25,16 +26,6 @@ export default function Navigation() {
       />
       <BsChatFill style={location == "/Chat" ? { color: "#5ac479" } : ""} />
       <IoMdSettings style={location == "/MyPage" ? { color: "#5ac479" } : ""} />
-    </Div>
+    </s.Div>
   );
 }
-
-const Div = styled.div`
-  width: 360px;
-  height: 56px;
-  font-size: 24px;
-  color: #aeaeb2;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-`;

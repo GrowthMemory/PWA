@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { CalendarContext, WriteContext } from "../context/context";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-export default function HeaderText() {
+export default function HeaderText(props) {
   const { retrospectionData, updateRetrospectionData } =
     useContext(WriteContext);
   const navigate = useNavigate();
@@ -16,7 +16,11 @@ export default function HeaderText() {
       </BackBtn>
       <TextBox>
         <LeafIcon />
-        <span>
+        <span
+          onClick={() => {
+            props.setShowCalendar((prev) => !prev);
+          }}
+        >
           {retrospectionData.date.month}월{retrospectionData.date.date}일의 회고
         </span>
         <CalendarBtn />
