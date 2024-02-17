@@ -31,7 +31,7 @@ export default function Button(props) {
             });
           }
           if (props.text == "next" && agreement == 3) {
-            navigate("/CreateName");
+            navigate("/Login");
           }
           if (signUpStep == "CreateName") {
             navigate("/Home");
