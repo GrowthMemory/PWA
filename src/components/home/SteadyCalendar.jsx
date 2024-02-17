@@ -1,6 +1,8 @@
 import * as func from "./steadyCalendarFunction";
 import { useContext, useEffect } from "react";
 import { HomeContext } from "../context/context";
+import { getUserAllReviews } from "../../service/db";
+import { getUID } from "../../service/auth";
 import * as s from "../css/home/steadyCalendar";
 
 export default function SteadyCalendar() {
@@ -12,14 +14,27 @@ export default function SteadyCalendar() {
   let monthArr = func.createMonthArr(dateArr);
 
   useEffect(() => {
-    getRetrospectionData(setRetrospectionData, setRetrospectionNumber);
+    let uid = getUID();
+    let func = async () => {
+      let temp = await getUserAllReviews(uid);
+      await setRetrospectionData((prev) => {
+        let arr = Object.keys(temp);
+        return arr;
+      });
+    };
+    func();
   }, []);
 
-  let date = [];
+  useEffect(() => {
+    setRetrospectionNumber(retrospectionData.length);
+  }, [retrospectionData]);
 
+  let date = [];
   retrospectionData.forEach((x) => {
-    let temp = x["날짜"].replace(/년|월|일/g, "");
-    date.push(temp.split(" "));
+    let split = x[2] == "-" ? x.split("-") : x.split(".");
+    // 여기 나중에 db 날려달라 하고 . 빼기
+    split[0] = "20" + split[0];
+    date.push(split);
   });
 
   return (
@@ -59,23 +74,6 @@ export default function SteadyCalendar() {
       </s.CalenderBox>
     </s.Div>
   );
-}
-
-async function getRetrospectionData(
-  setRetrospectionData,
-  setRetrospectionNumber
-) {
-  try {
-    const response = await fetch("dumy/test.json");
-    const data = await response.json();
-    setRetrospectionData(() => {
-      let temp = data.data;
-      return temp;
-    });
-    setRetrospectionNumber(data.data.length);
-  } catch (err) {
-    console.log(err);
-  }
 }
 
 function checkFunc(n2, n, d, date, currentYear) {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { HomeContext } from "../context/context";
 
 export default function HomeProvider(props) {
-  const [retrospectionNumber, setRetrospectionNumber] = useState(1);
+  const [retrospectionNumber, setRetrospectionNumber] = useState(0);
   const [wiseSaying, setWiseSaying] = useState({ txt: "", author: "" });
   const [retrospectionData, setRetrospectionData] = useState([]);
   return (
