@@ -6,6 +6,7 @@ import OverlapButton from "../components/createName/OverlapButton";
 import OverlapSpan from "../components/createName/OverlapSpan";
 import Button from "../components/common/Button";
 import * as s from "../components/css/createName/createName";
+import MyPageProvider from "../components/provider/MyPageProvider";
 export default function CreateName() {
   const [inputText, setInputText] = useState("");
   return (
@@ -23,14 +24,16 @@ export default function CreateName() {
           <s.Div>
             <div>
               <s.InputBox>
-                <s.Input
-                  type="text"
-                  maxLength={10}
-                  placeholder="닉네임을 입력해주세요"
-                  onChange={(e) => {
-                    setInputText(e.target.value);
-                  }}
-                />
+                <MyPageProvider>
+                  <s.Input
+                    type="text"
+                    maxLength={10}
+                    placeholder="닉네임을 입력해주세요"
+                    onChange={(e) => {
+                      setInputText(e.target.value);
+                    }}
+                  />
+                </MyPageProvider>
                 <OverlapButton
                   inputText={inputText}
                   overLapText={overLapText}
@@ -39,7 +42,9 @@ export default function CreateName() {
               <OverlapSpan overLapText={overLapText} />
             </div>
           </s.Div>
-          <Button text={"next"} />
+          <MyPageProvider>
+            <Button text={"next"} />
+          </MyPageProvider>
         </SignUpProvider>
       </s.Section>
     </>
@@ -54,7 +59,7 @@ let overLapText = {
   },
   span: {
     none: "한글, 영어 2~10자리까지 가능해요.",
-    false: "이 닉네임으로 하시겠어요?",
-    true: "아쉽지만 다른 닉네임을 선택해주세요.",
+    false: "아쉽지만 다른 닉네임을 선택해주세요.",
+    true: "이 닉네임으로 하시겠어요?",
   },
 };

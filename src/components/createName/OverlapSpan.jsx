@@ -5,7 +5,7 @@ export default function OverlapSpan(props) {
   const { overlapCheck } = useContext(SignUpContext);
   return (
     <>
-      <s.Span>{props.overLapText.span[overlapCheck]}</s.Span>
+      <s.Span>{props.overLapText.span[overlapCheck.toString()]}</s.Span>
     </>
   );
 }

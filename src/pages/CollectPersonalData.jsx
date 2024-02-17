@@ -4,6 +4,7 @@ import TermsBox from "../components/collectPersonalData/TermsBox";
 import SignUpProvider from "../components/provider/SignUpPovider";
 import BackHeader from "../components/common/header/BackHeader";
 import * as s from "../components/css/collectPersonalDate/collectPersonalData";
+import MyPageProvider from "../components/provider/MyPageProvider";
 
 export default function CollectPersonalData() {
   return (
@@ -18,9 +19,13 @@ export default function CollectPersonalData() {
           </s.TextBox>
         </HeaderBox>
         <SignUpProvider>
-          <Button text={"agree"} />
+          <MyPageProvider>
+            <Button text={"agree"} />
+          </MyPageProvider>
           <TermsBox />
-          <Button text={"next"} />
+          <MyPageProvider>
+            <Button text={"next"} />
+          </MyPageProvider>
         </SignUpProvider>
       </s.Section>
     </>

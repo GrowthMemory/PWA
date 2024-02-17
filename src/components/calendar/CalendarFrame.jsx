@@ -1,34 +1,40 @@
 import { CalendarContext, WriteContext } from "../context/context";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CalendarFunction from "./CalendarFunction";
-import InputCalendar from "../common/InputCalendar";
 import GoingRetrospection from "./GoingRetrospection";
 import { SELECTDATE } from "../common/key";
 import { useLocation } from "react-router-dom";
 import * as s from "../css/calendar/calendarFram";
+import SelectMonth from "./SelectMonth";
 export default function CalendarFrame() {
   const {
     currentDate,
     nextMonth,
     prevMonth,
-    selectDate,
     setTempDate,
     showModal,
     setShowModal,
+    showCalendar,
+    setShowCalendar,
   } = useContext(CalendarContext);
   const { retrospectionData } = useContext(WriteContext);
   const location = useLocation().pathname;
   const dates = CalendarFunction(currentDate, nextMonth, prevMonth, location);
   const days = ["일", "월", "화", "수", "목", "금", "토"];
+
   return (
     <s.Div>
       <s.DateBox>
-        <span>
-          {selectDate.year}년{selectDate.month}월
+        <span
+          onClick={() => {
+            setShowCalendar(true);
+          }}
+        >
+          {currentDate.getFullYear()}년{currentDate.getMonth() + 1}월
         </span>
         <s.CalendarBtn />
       </s.DateBox>
-      <InputCalendar />
+      {showCalendar && <SelectMonth />}
       <s.Table>
         <s.Thead>
           <tr>
