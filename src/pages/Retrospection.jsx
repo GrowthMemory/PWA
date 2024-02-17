@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import WriteProvider from "../components/provider/WriteProvider";
-import CalendarProvider from "../components/provider/CalendarProvider";
 import MainHeader from "../components/common/header/MainHeader";
 import WriteBox from "../components/retrospection/WriteBox";
 import HeaderText from "../components/retrospection/HeaderText";
-import InputCalendar from "../components/common/InutCalendar";
 import { HiLocationMarker } from "react-icons/hi";
 import { TiWarning } from "react-icons/ti";
 import ReportProvider from "../components/provider/ReportProvider";
@@ -16,10 +14,10 @@ export default function Retrospection() {
   return (
     <RetrospectionBox>
       <WriteProvider>
-        <MainHeader>
-          <HeaderText setShowCalendar={setShowCalendar} />
-        </MainHeader>
         <ReportProvider>
+          <MainHeader>
+            <HeaderText setShowCalendar={setShowCalendar} />
+          </MainHeader>
           {showCalendar && <ReportCalendar setShowCalendar={setShowCalendar} />}
         </ReportProvider>
         <Div>
