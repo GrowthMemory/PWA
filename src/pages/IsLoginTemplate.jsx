@@ -4,7 +4,6 @@ import { firebaseAuth } from "../service/firebaseConfig";
 
 function IsLoginTemplate(props) {
   const navigate = useNavigate();
-
   useEffect(() => {
     if (firebaseAuth.currentUser) {
       navigate("/Home");
