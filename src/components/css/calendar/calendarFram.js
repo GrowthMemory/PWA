@@ -85,4 +85,11 @@ export const Tbody = styled.tbody`
     font-size: 8px;
     font-weight: 500;
   }
+  td div img {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    right: 1px;
+    z-index: 2;
+  }
 `;

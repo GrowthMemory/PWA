@@ -16,6 +16,8 @@ export default function CalendarFrame() {
     setShowModal,
     showCalendar,
     setShowCalendar,
+    modalText,
+    setModalText,
   } = useContext(CalendarContext);
   const { retrospectionData } = useContext(WriteContext);
   const location = useLocation().pathname;
@@ -87,8 +89,43 @@ export default function CalendarFrame() {
                       setShowModal(true);
                     }}
                   >
-                    <div>
-                      <img src="" alt="" />
+                    <div
+                      onClick={() => {
+                        setModalText(() => {
+                          if (
+                            date == 18 ||
+                            date == 19 ||
+                            date == 20 ||
+                            date == 21 ||
+                            date == 22 ||
+                            date == 23 ||
+                            date == 24
+                          ) {
+                            return "회고를 보시겠어요?";
+                          } else {
+                            return "회고를 작성하시겠어요?";
+                          }
+                        });
+                      }}
+                    >
+                      {(date == 18 ||
+                        date == 19 ||
+                        date == 20 ||
+                        date == 21 ||
+                        date == 22 ||
+                        date == 23 ||
+                        date == 24) && (
+                        <img
+                          src={`${
+                            date == 18 || date == 21 || date == 23 || date == 24
+                              ? "img/soso.png"
+                              : date == 19 || date == 20 || date == 22
+                              ? "img/happy.png"
+                              : ""
+                          }`}
+                          alt=""
+                        />
+                      )}
                     </div>
                     <span>{date}</span>
                   </td>
