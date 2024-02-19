@@ -24,7 +24,10 @@ export default function Navigation() {
         style={location == "/Calendar" ? { color: "#5ac479" } : ""}
         onClick={() => navigate("/Calendar")}
       />
-      <BsChatFill style={location == "/Chat" ? { color: "#5ac479" } : ""} />
+      <BsChatFill
+        style={location == "/ChatMain" ? { color: "#5ac479" } : ""}
+        onClick={() => navigate("/ChatMain")}
+      />
       <IoMdSettings
         style={location == "/MyPage" ? { color: "#5ac479" } : ""}
         onClick={() => navigate("/MyPage")}

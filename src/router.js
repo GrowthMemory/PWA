@@ -10,6 +10,8 @@ import Retrospection from "./pages/Retrospection";
 import Calendar from "./pages/Calendar";
 import Report from "./pages/Report";
 import MyPage from "./pages/MyPage";
+import Chat from "./pages/Chat";
+import ChatMain from "./components/chat/ChatMain";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +53,14 @@ const router = createBrowserRouter([
   {
     path: "/MyPage",
     element: <MyPage />,
+  },
+  {
+    path: "/ChatMain",
+    element: <ChatMain />,
+  },
+  {
+    path: "/Chat",
+    element: <Chat />,
   },
 ]);
 

@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
 export const Div = styled.div`
-  margin: ${(props) =>
+  margin-bottom: ${(props) =>
     props.location == "/Write"
-      ? "0 0 40px 0"
+      ? "40px"
       : props.location == "/Calendar"
-      ? "0 0 31px 0"
-      : "0 0 21px 0"};
+      ? "31px"
+      : props.location == "Report"
+      ? "21px"
+      : 0};
   width: 360px;
   height: 56px;
   font-size: 16px;
