@@ -14,7 +14,7 @@ export default function CurrentStatus() {
           name="volume"
           min="0"
           max="100"
-          defaultValue={currentStatusObj.score}
+          value={currentStatusObj.score}
           readOnly
         />
         <p>
