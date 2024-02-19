@@ -212,11 +212,8 @@ function setDate(clicked, updateSelctDate) {
 function setWriteDate(data, selectDate) {
   let split = selectDate.split(".");
   data.date.year = split[0];
-  if (split[1][0] == 0) {
-    data.date.month = split[1].substring(1, 2);
-  } else {
-    data.date.month = split[1];
-  }
+  data.date.month = split[1];
+
   if (split[2][0] == 0) {
     data.date.date = split[2].substring(1, 2);
   } else {

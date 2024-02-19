@@ -1,14 +1,12 @@
-import { useState } from "react";
 import SignUpProvider from "../components/provider/SignUpPovider";
 import BackHeader from "../components/common/header/BackHeader";
 import HeaderBox from "../components/common/header/HeaderBox";
-import OverlapButton from "../components/createName/OverlapButton";
 import OverlapSpan from "../components/createName/OverlapSpan";
 import Button from "../components/common/Button";
 import * as s from "../components/css/createName/createName";
 import MyPageProvider from "../components/provider/MyPageProvider";
+import NameInput from "../components/createName/NameInput";
 export default function CreateName() {
-  const [inputText, setInputText] = useState("");
   return (
     <>
       <BackHeader />
@@ -25,19 +23,8 @@ export default function CreateName() {
             <div>
               <s.InputBox>
                 <MyPageProvider>
-                  <s.Input
-                    type="text"
-                    maxLength={10}
-                    placeholder="닉네임을 입력해주세요"
-                    onChange={(e) => {
-                      setInputText(e.target.value);
-                    }}
-                  />
+                  <NameInput />
                 </MyPageProvider>
-                <OverlapButton
-                  inputText={inputText}
-                  overLapText={overLapText}
-                />
               </s.InputBox>
               <OverlapSpan overLapText={overLapText} />
             </div>
@@ -52,14 +39,8 @@ export default function CreateName() {
 }
 
 let overLapText = {
-  btn: {
-    none: "중복확인",
-    false: "사용불가",
-    true: "사용가능",
-  },
   span: {
     none: "한글, 영어 2~10자리까지 가능해요.",
-    false: "아쉽지만 다른 닉네임을 선택해주세요.",
     true: "이 닉네임으로 하시겠어요?",
   },
 };

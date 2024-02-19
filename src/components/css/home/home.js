@@ -32,6 +32,12 @@ export const Btn = styled.button`
   align-items: center;
   position: relative;
   background-color: #5ac479;
+
+  div {
+    width: 70%;
+    height: 100%;
+    background-color: #f9f9f9;
+  }
 `;
 export const LeftIcon = styled(LuPencilLine)`
   margin: 0 14px 0 17px;

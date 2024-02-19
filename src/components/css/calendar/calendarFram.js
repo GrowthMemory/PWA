@@ -20,7 +20,7 @@ export const DateBox = styled.div`
 `;
 
 export const CalendarBtn = styled(IoTriangle)`
-  margin-left: 4px;
+  margin-left: 5px;
   font-size: 12px;
   transform: rotate(180deg);
 `;

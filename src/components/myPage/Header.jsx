@@ -1,11 +1,18 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { MyPageContext } from "../context/context";
 import { useNavigate } from "react-router-dom";
+import { firebaseAuth } from "../../service/firebaseConfig";
 
 export default function Header() {
   const { userName, setUserName } = useContext(MyPageContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (firebaseAuth.currentUser) {
+      setUserName(firebaseAuth.currentUser.displayName);
+    }
+  });
   return (
     <HeaderBox>
       <Div>

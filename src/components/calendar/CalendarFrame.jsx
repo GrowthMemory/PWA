@@ -30,7 +30,7 @@ export default function CalendarFrame() {
             setShowCalendar(true);
           }}
         >
-          {currentDate.getFullYear()}년{currentDate.getMonth() + 1}월
+          {currentDate.getFullYear()}년 {currentDate.getMonth() + 1}월
         </span>
         <s.CalendarBtn />
       </s.DateBox>
@@ -76,8 +76,11 @@ export default function CalendarFrame() {
                         date: {
                           ...retrospectionData.date,
                           year: currentDate.getFullYear(),
-                          month: currentDate.getMonth() + 1,
-                          date: date,
+                          month:
+                            currentDate.getMonth() + 1 < 10
+                              ? "0" + (currentDate.getMonth() + 1)
+                              : currentDate.getMonth() + 1,
+                          date: date < 10 ? "0" + date : date,
                         },
                       };
                       localStorage.setItem(SELECTDATE, JSON.stringify(temp));
