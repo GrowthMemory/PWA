@@ -11,7 +11,7 @@ export const lineOptions = {
   },
   hAxis: {
     textStyle: {
-      fontSize: "4",
+      fontSize: "5",
     },
   },
   chartArea: {
