@@ -26,11 +26,13 @@ export default function Home() {
     let uid = getUID();
     let func = async () => {
       let temp = await getUserAllReviews(uid);
-      let key = Object.keys(temp);
-      for (let i = 0; i < key.length; i++) {
-        if (currentDate == key[i]) {
-          setTodayRetrospection(true);
-          break;
+      if (temp) {
+        let key = Object.keys(temp);
+        for (let i = 0; i < key.length; i++) {
+          if (currentDate == key[i]) {
+            setTodayRetrospection(true);
+            break;
+          }
         }
       }
     };

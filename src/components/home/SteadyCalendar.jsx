@@ -17,10 +17,12 @@ export default function SteadyCalendar() {
     let uid = getUID();
     let func = async () => {
       let temp = await getUserAllReviews(uid);
-      await setRetrospectionData((prev) => {
-        let arr = Object.keys(temp);
-        return arr;
-      });
+      if (temp) {
+        await setRetrospectionData((prev) => {
+          let arr = Object.keys(temp);
+          return arr;
+        });
+      }
     };
     func();
   }, []);

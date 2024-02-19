@@ -85,13 +85,15 @@ export default function WriteBox(props) {
 
 let checkDate = async (uid, dateText, setCorrectDate, correctDate) => {
   let temp = await getUserAllReviews(uid);
-  let key = Object.keys(temp);
-  for (let i = 0; i < key.length; i++) {
-    if (key[i] == dateText) {
-      setCorrectDate(true);
-      break;
-    } else {
-      setCorrectDate(false);
+  if (temp) {
+    let key = Object.keys(temp);
+    for (let i = 0; i < key.length; i++) {
+      if (key[i] == dateText) {
+        setCorrectDate(true);
+        break;
+      } else {
+        setCorrectDate(false);
+      }
     }
   }
 };
