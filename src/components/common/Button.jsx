@@ -30,7 +30,11 @@ export default function Button(props) {
               update[2].checked = false;
             });
           }
-          if (props.text == "next" && agreement == 3) {
+          if (
+            props.text == "next" &&
+            agreement == 3 &&
+            signUpStep == "CollectPersonalData"
+          ) {
             navigate("/Login");
           }
           if (signUpStep == "CreateName") {

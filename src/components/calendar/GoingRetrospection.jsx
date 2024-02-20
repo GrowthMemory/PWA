@@ -5,12 +5,12 @@ import { SELECTDATE } from "../common/key";
 import * as s from "../css/calendar/modal";
 
 export default function GoingRetrospection() {
-  const { setShowModal } = useContext(CalendarContext);
+  const { setShowModal, modalText } = useContext(CalendarContext);
   const navigate = useNavigate();
   return (
     <s.Div>
       <s.Modal>
-        <span>회고를 작성하시겠어요?</span>
+        <span>{modalText}</span>
         <s.BtnBox>
           <s.LeftBtn
             onClick={() => {

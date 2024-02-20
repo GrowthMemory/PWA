@@ -14,6 +14,7 @@ export default function CalendarProvider(props) {
   const [showModal, setShowModal] = useState(false);
   const [calendarYear, setCalendarYear] = useState(new Date().getFullYear());
   const [showCalendar, setShowCalendar] = useState(false);
+  const [modalText, setModalText] = useState("회고를 작성하시겠어요?");
   return (
     <CalendarContext.Provider
       value={{
@@ -31,6 +32,8 @@ export default function CalendarProvider(props) {
         setCalendarYear,
         showCalendar,
         setShowCalendar,
+        modalText,
+        setModalText,
       }}
     >
       {props.children}

@@ -10,38 +10,38 @@
   },
   "data": [
     {
-      "index": "2023-10-17 00:00",
-      "emotion_score": 15.8471215423,
+      "index": "2024-02-18 00:00",
+      "emotion_score": 15,
       "color": "pink"
     },
     {
-      "index": "2023-10-18 00:00",
-      "emotion_score": 31.270255344,
+      "index": "2024-02-19 00:00",
+      "emotion_score": 31,
       "color": "pink"
     },
     {
-      "index": "2023-10-19 00:00",
-      "emotion_score": 35.8796950593,
+      "index": "2024-02-20 00:00",
+      "emotion_score": 35,
       "color": "pink"
     },
     {
-      "index": "2023-10-20 00:00",
-      "emotion_score": 25.5096240305,
+      "index": "2024-02-21 00:00",
+      "emotion_score": 20,
       "color": "pink"
     },
     {
-      "index": "2023-10-21 00:00",
-      "emotion_score": -11.8025400478,
+      "index": "2024-02-22 00:00",
+      "emotion_score": 25,
       "color": "pink"
     },
     {
-      "index": "2023-10-22 00:00",
-      "emotion_score": 25.883192798,
+      "index": "2024-02-23 00:00",
+      "emotion_score": 22,
       "color": "pink"
     },
     {
-      "index": "2023-10-23 00:00",
-      "emotion_score": -20.1803090543,
+      "index": "2024-02-24 00:00",
+      "emotion_score": 18,
       "color": "pink"
     }
   ]

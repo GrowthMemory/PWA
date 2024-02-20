@@ -17,8 +17,8 @@ export default function ReportProvider(props) {
   ]);
   const [retrospectionNum, setRetrospection] = useState(0);
   const [currentStatusObj, setCurrentStatusObj] = useImmer({
-    score: 80,
-    text: "안정적인",
+    score: 46,
+    text: "무슨?",
   });
   return (
     <ReportContext.Provider

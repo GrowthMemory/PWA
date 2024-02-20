@@ -3,7 +3,11 @@ import Terms from "../common/Terms";
 import { SignUpContext } from "../context/context";
 import * as s from "../css/collectPersonalDate/termsBox";
 export default function TermsBox() {
-  const { isChecked } = useContext(SignUpContext);
+  const { isChecked, setSignUpStep, signUpStep } = useContext(SignUpContext);
+
+  useEffect(() => {
+    setSignUpStep("CollectPersonalData");
+  }, []);
   return (
     <s.Box>
       {isChecked.map((obj, n) => (
