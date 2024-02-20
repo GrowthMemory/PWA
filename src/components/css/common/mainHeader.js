@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BsChevronLeft } from "react-icons/bs";
 
 export const Div = styled.div`
   margin-bottom: ${(props) =>
@@ -23,4 +24,10 @@ export const TextBox = styled.div`
   align-items: center;
   position: relative;
   background-color: #fff;
+`;
+
+export const Back = styled(BsChevronLeft)`
+  font-size: 24px;
+  position: absolute;
+  left: 16px;
 `;

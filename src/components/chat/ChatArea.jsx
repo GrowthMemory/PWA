@@ -3,6 +3,7 @@ import ChatBot from "./ChatBot";
 import UserChat from "./UserChat";
 import { useContext } from "react";
 import { ChatContext } from "../context/context";
+import { firebaseAuth } from "../../service/firebaseConfig";
 import * as s from "../css/chat/chat";
 export default function ChatArea() {
   const { sendChat, showAnswer, setShowAnswer, message } =
@@ -13,7 +14,10 @@ export default function ChatArea() {
   return (
     <s.Main>
       <ChatBot>
-        <p>안녕? 난 너의 마음 속 나무야! 어떤게 궁금해?</p>
+        <p>
+          안녕하세요?? 전 {firebaseAuth.currentUser.displayName}님의 마음 속
+          나무입니다! 어떤게 궁금하세요?
+        </p>
       </ChatBot>
       {sendChat && (
         <UserChat>
