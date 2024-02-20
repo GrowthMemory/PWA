@@ -24,6 +24,7 @@ export const CalenderBox = styled.div`
   height: 170px;
   display: flex;
   overflow-x: scroll;
+  overflow-y: hidden;
 
   .check {
     background-color: #5ac479;

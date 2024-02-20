@@ -20,6 +20,7 @@ export default function Home() {
   let currentDate = `${year}-${month < 10 ? "0" + month : month}-${
     date < 10 ? "0" + date : date
   }`;
+
   useEffect(() => {
     setTodayRetrospection(false);
     localStorage.removeItem(SELECTDATE);

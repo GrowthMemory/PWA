@@ -7,7 +7,7 @@ import { IoMdSettings } from "react-icons/io";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as s from "../css/common/navigation";
 
-export default function Navigation() {
+export default function Navigation(props) {
   const location = useLocation().pathname;
   const navigate = useNavigate();
   return (
@@ -18,7 +18,9 @@ export default function Navigation() {
       />
       <PiChartLine
         style={location == "/Report" ? { color: "#5ac479" } : ""}
-        onClick={() => navigate("/Report")}
+        onClick={() => {
+          navigate("/Report");
+        }}
       />
       <FaCalendar
         style={location == "/Calendar" ? { color: "#5ac479" } : ""}
