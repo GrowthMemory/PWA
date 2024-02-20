@@ -11,3 +11,5 @@ export const CalendarContext = createContext();
 export const ReportContext = createContext();
 
 export const MyPageContext = createContext();
+
+export const ChatContext = createContext();

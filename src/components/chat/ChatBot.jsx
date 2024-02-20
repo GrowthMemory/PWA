@@ -12,7 +12,9 @@ export default function ChatBot(props) {
         <Chat>{props.children}</Chat>
         <Time>
           {`${currentHour > 12 ? currentHour - 12 : currentHour}
-          :${currentMinute} ${currentMinute > 12 ? "pm" : "am"}`}
+          :${currentMinute < 10 ? "0" + currentMinute : currentMinute} ${
+            currentMinute > 12 ? "pm" : "am"
+          }`}
         </Time>
       </ChatBox>
     </Div>
