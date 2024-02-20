@@ -83,9 +83,27 @@ export const MedalIcon = styled(IoRibbonSharp)`
 `;
 
 export const Div = styled.div`
-  width: 312px;
-  height: 75px;
+  padding: 10px;
+  width: 292px;
+  height: 55px;
   border-radius: 5px;
+  display: flex;
+  flex-direction: ${(props) => (props.length > 0 ? "column" : "row")};
+  justify-content: ${(props) =>
+    props.length > 0 ? "space-between" : "center"};
+  align-items: ${(props) => (props.length > 0 ? "flex-start" : "center")};
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
   background: #fff;
+`;
+
+export const Badge = styled.img`
+  margin-left: 5px;
+  width: 25px;
+  height: 25px;
+`;
+
+export const BadgeBox = styled.div`
+  width: 100%;
+  height: 45%;
+  /* background-color: #e9ffe7; */
 `;

@@ -20,6 +20,12 @@ export default function ReportProvider(props) {
     score: 46,
     text: "무슨?",
   });
+  const [showChart, setShowChart] = useImmer({
+    week: false,
+    month: false,
+    year: false,
+  });
+  const [data, setData] = useState([]);
   return (
     <ReportContext.Provider
       value={{
@@ -45,6 +51,10 @@ export default function ReportProvider(props) {
         setRetrospection,
         currentStatusObj,
         setCurrentStatusObj,
+        showChart,
+        setShowChart,
+        data,
+        setData,
       }}
     >
       {props.children}

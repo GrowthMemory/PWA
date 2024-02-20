@@ -3,6 +3,8 @@ import { ReportContext } from "../context/context";
 import * as Func from "./categoryFunc";
 import ReportCalendar from "../common/InputCalendar";
 import WriteProvider from "../provider/WriteProvider";
+import { getUID } from "../../service/auth";
+import { getUserAllReviews } from "../../service/db";
 import * as s from "../css/report/category";
 export default function Category() {
   const {
@@ -15,18 +17,47 @@ export default function Category() {
     showCalendar,
     setShowCalendar,
     clicked,
+    showChart,
+    setShowChart,
+    data,
+    setData,
   } = useContext(ReportContext);
+
   useEffect(() => {
     setShowCategoryBtn(true);
+    let uid = getUID();
+    let func = async () => {
+      let temp = await getUserAllReviews(uid);
+      if (temp) {
+        await setData(() => {
+          let arr = Object.keys(temp);
+          return arr;
+        });
+      }
+    };
+    func();
   }, []);
+
   useEffect(() => {
     if (clicked.length == 2) setShowCalendar(false);
   }, [clicked]);
+
+  if (data.length >= 7) {
+    setShowChart((data) => {
+      data.week = true;
+    });
+  }
+
   return (
     <s.Div>
       <s.Btn
         onClick={() => {
           Func.dateFunc(setCurrentCategory, updateSelctDate);
+          if (data.length >= 7) {
+            setShowChart((data) => {
+              data.week = true;
+            });
+          }
         }}
         style={
           currentCategory == "week"
@@ -41,6 +72,11 @@ export default function Category() {
       <s.Btn
         onClick={() => {
           Func.monthFunc(setCurrentCategory, updateSelctDate);
+          if (data.length >= 30) {
+            setShowChart((data) => {
+              data.month = true;
+            });
+          }
         }}
         style={
           currentCategory == "month"
@@ -55,6 +91,11 @@ export default function Category() {
       <s.Btn
         onClick={() => {
           Func.yearFunc(setCurrentCategory, updateSelctDate);
+          if (data.length >= 365) {
+            setShowChart((data) => {
+              data.year = true;
+            });
+          }
         }}
         style={
           currentCategory == "year"

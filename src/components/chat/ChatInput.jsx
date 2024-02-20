@@ -1,23 +1,20 @@
 import { HiPaperAirplane } from "react-icons/hi2";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { ChatContext } from "../context/context";
 import * as s from "../css/chat/chatInput";
 
 export default function ChatInput() {
   const { setSendChat, setMessage } = useContext(ChatContext);
-  let text = "";
+  let chatInput = useRef();
   return (
     <s.Div>
       <s.InputBox>
-        <s.Textarea
-          onChange={(e) => {
-            text = e.target.value;
-          }}
-        ></s.Textarea>
+        <s.Textarea ref={chatInput}></s.Textarea>
         <s.Btn
           onClick={() => {
             setSendChat(true);
-            setMessage(text);
+            setMessage(chatInput.current.value);
+            chatInput.current.value = "";
           }}
         >
           <HiPaperAirplane />

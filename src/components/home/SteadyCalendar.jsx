@@ -6,8 +6,12 @@ import { getUID } from "../../service/auth";
 import * as s from "../css/home/steadyCalendar";
 
 export default function SteadyCalendar() {
-  const { retrospectionData, setRetrospectionData, setRetrospectionNumber } =
-    useContext(HomeContext);
+  const {
+    retrospectionData,
+    setRetrospectionData,
+    setRetrospectionNumber,
+    setShowBadge,
+  } = useContext(HomeContext);
   let currentYear = new Date().getFullYear();
   let dayArr = ["S", "M", "T", "W", "T", "F", "S"];
   let dateArr = func.createDataArr();
@@ -29,6 +33,16 @@ export default function SteadyCalendar() {
 
   useEffect(() => {
     setRetrospectionNumber(retrospectionData.length);
+    if (retrospectionData.length >= 1) {
+      setShowBadge((data) => {
+        data["1day"] = true;
+      });
+    }
+    if (retrospectionData.length >= 7) {
+      setShowBadge((data) => {
+        data["1week"] = true;
+      });
+    }
   }, [retrospectionData]);
 
   let date = [];
