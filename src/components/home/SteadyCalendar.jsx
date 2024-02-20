@@ -33,8 +33,7 @@ export default function SteadyCalendar() {
 
   let date = [];
   retrospectionData.forEach((x) => {
-    let split = x[2] == "-" ? x.split("-") : x.split(".");
-    // 여기 나중에 db 날려달라 하고 . 빼기
+    let split = x.split("-");
     split[0] = "20" + split[0];
     date.push(split);
   });

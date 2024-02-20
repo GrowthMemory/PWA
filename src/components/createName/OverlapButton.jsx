@@ -24,18 +24,3 @@ export default function OverlapButton(props) {
     </>
   );
 }
-
-function fetchFunc(inputText) {
-  // try {
-  //   const response = await fetch("link", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(inputText),
-  //   });
-  // } catch (err) {
-  //   console.log(err);
-  // }
-  return true;
-}
