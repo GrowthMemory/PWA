@@ -1,8 +1,9 @@
 import Chart from "react-google-charts";
 import { useContext, useEffect } from "react";
-import { ReportContext } from "../context/context";
+import { HomeContext, ReportContext } from "../context/context";
 import * as O from "./chartOption";
 import * as s from "../css/report/chart";
+import NoneChart from "./NoneChart";
 export default function ChartBox() {
   const {
     lineData,
@@ -12,16 +13,20 @@ export default function ChartBox() {
     updateFeelingData,
     retrospectionNum,
     setRetrospection,
+    showChart,
   } = useContext(ReportContext);
 
+  useEffect(() => {}, [currentCategory]);
+
   useEffect(() => {
+    localStorage.setItem("visitedChart", "true");
     fetchFunc(
       updateLineData,
       updateFeelingData,
       setRetrospection,
       currentCategory
     );
-  }, [currentCategory]);
+  }, []);
 
   return (
     <s.Div>
@@ -29,16 +34,61 @@ export default function ChartBox() {
         기간 내, <span>{retrospectionNum}</span>번 회고 했어요
       </s.RetrospectionNumber>
       <s.Title>얼마나 만족스러운 회고를 했나요 ?</s.Title>
-      <s.LineChart className="c1">
-        <Chart chartType="LineChart" data={lineData} options={O.lineOptions} />
-      </s.LineChart>
-      <s.ChartColor className="c2">
-        <Chart
-          chartType="CandlestickChart"
-          data={feelingData}
-          options={O.feelingOption}
-        />
-      </s.ChartColor>
+      {currentCategory == "week" && showChart.week ? (
+        <s.LineChart className="c1">
+          <Chart
+            chartType="LineChart"
+            data={lineData}
+            options={O.lineOptions}
+          />
+        </s.LineChart>
+      ) : currentCategory == "month" && showChart.month ? (
+        <s.LineChart className="c1">
+          <Chart
+            chartType="LineChart"
+            data={lineData}
+            options={O.lineOptions}
+          />
+        </s.LineChart>
+      ) : currentCategory == "year" && showChart.year ? (
+        <s.LineChart className="c1">
+          <Chart
+            chartType="LineChart"
+            data={lineData}
+            options={O.lineOptions}
+          />
+        </s.LineChart>
+      ) : (
+        <NoneChart />
+      )}
+
+      {currentCategory == "week" && showChart.week ? (
+        <s.ChartColor className="c2">
+          <Chart
+            chartType="CandlestickChart"
+            data={feelingData}
+            options={O.feelingOption}
+          />
+        </s.ChartColor>
+      ) : currentCategory == "month" && showChart.month ? (
+        <s.ChartColor className="c2">
+          <Chart
+            chartType="CandlestickChart"
+            data={feelingData}
+            options={O.feelingOption}
+          />
+        </s.ChartColor>
+      ) : currentCategory == "year" && showChart.year ? (
+        <s.ChartColor className="c2">
+          <Chart
+            chartType="CandlestickChart"
+            data={feelingData}
+            options={O.feelingOption}
+          />
+        </s.ChartColor>
+      ) : (
+        ""
+      )}
     </s.Div>
   );
 }
