@@ -53,6 +53,8 @@ export default function Category() {
       <s.Btn
         onClick={() => {
           Func.dateFunc(setCurrentCategory, updateSelctDate);
+          setShowCategoryBtn(true);
+          setShowCalendar(false);
           if (data.length >= 7) {
             setShowChart((data) => {
               data.week = true;
@@ -72,6 +74,8 @@ export default function Category() {
       <s.Btn
         onClick={() => {
           Func.monthFunc(setCurrentCategory, updateSelctDate);
+          setShowCategoryBtn(true);
+          setShowCalendar(false);
           if (data.length >= 30) {
             setShowChart((data) => {
               data.month = true;
@@ -91,6 +95,8 @@ export default function Category() {
       <s.Btn
         onClick={() => {
           Func.yearFunc(setCurrentCategory, updateSelctDate);
+          setShowCategoryBtn(true);
+          setShowCalendar(false);
           if (data.length >= 365) {
             setShowChart((data) => {
               data.year = true;
@@ -113,6 +119,13 @@ export default function Category() {
             setShowCalendar((prev) => !prev);
             setCurrentCategory("custom");
           }}
+          style={
+            currentCategory == "custom"
+              ? { backgroundColor: "#5AC479", color: "#fff" }
+              : {
+                  background: "#fff",
+                }
+          }
         >
           기간 선택
           <s.DownIcon />
@@ -123,6 +136,13 @@ export default function Category() {
           onClick={() => {
             setShowCalendar((prev) => !prev);
           }}
+          style={
+            currentCategory == "custom"
+              ? { backgroundColor: "#5AC479", color: "#fff" }
+              : {
+                  background: "#fff",
+                }
+          }
         >
           <span>{`${selcetDate.startDate.year}.${selcetDate.startDate.month}.${selcetDate.startDate.date}~${selcetDate.endDate.year}.${selcetDate.endDate.month}.${selcetDate.endDate.date}`}</span>
         </s.CurrentDate>
