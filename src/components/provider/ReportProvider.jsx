@@ -18,7 +18,7 @@ export default function ReportProvider(props) {
   const [retrospectionNum, setRetrospection] = useState(0);
   const [currentStatusObj, setCurrentStatusObj] = useImmer({
     score: 46,
-    text: "무슨?",
+    text: "평균적인",
   });
   const [showChart, setShowChart] = useImmer({
     week: false,

@@ -15,7 +15,7 @@ export default function ChatArea() {
     <s.Main>
       <ChatBot>
         <p>
-          안녕하세요?? 전 {firebaseAuth.currentUser.displayName}님의 마음 속
+          안녕하세요? 전 {firebaseAuth.currentUser.displayName}님의 마음 속
           나무입니다! 어떤게 궁금하세요?
         </p>
       </ChatBot>

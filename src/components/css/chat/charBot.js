@@ -39,7 +39,7 @@ export const Chat = styled.div`
   background: #77c98f;
 
   p {
-    width: 180px;
+    width: 165px;
     height: auto;
     display: flex;
     flex-wrap: wrap;

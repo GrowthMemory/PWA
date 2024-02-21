@@ -64,7 +64,7 @@ const Div = styled.div`
   align-items: center;
   position: absolute;
   top: 0;
-  z-index: 2;
+  z-index: 3;
 `;
 
 const Calendar = styled.div`
