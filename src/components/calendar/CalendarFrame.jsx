@@ -93,13 +93,13 @@ export default function CalendarFrame() {
                       onClick={() => {
                         setModalText(() => {
                           if (
-                            date == 18 ||
-                            date == 19 ||
-                            date == 20 ||
-                            date == 21 ||
-                            date == 22 ||
-                            date == 23 ||
-                            date == 24
+                            (date == 15 && currentDate.getMonth() + 1 == 2) ||
+                            (date == 16 && currentDate.getMonth() + 1 == 2) ||
+                            (date == 17 && currentDate.getMonth() + 1 == 2) ||
+                            (date == 18 && currentDate.getMonth() + 1 == 2) ||
+                            (date == 19 && currentDate.getMonth() + 1 == 2) ||
+                            (date == 20 && currentDate.getMonth() + 1 == 2) ||
+                            (date == 21 && currentDate.getMonth() + 1 == 2)
                           ) {
                             return "회고를 보시겠어요?";
                           } else {
@@ -108,18 +108,18 @@ export default function CalendarFrame() {
                         });
                       }}
                     >
-                      {((date == 18 && currentDate.getMonth() + 1 == 2) ||
+                      {((date == 15 && currentDate.getMonth() + 1 == 2) ||
+                        (date == 16 && currentDate.getMonth() + 1 == 2) ||
+                        (date == 17 && currentDate.getMonth() + 1 == 2) ||
+                        (date == 18 && currentDate.getMonth() + 1 == 2) ||
                         (date == 19 && currentDate.getMonth() + 1 == 2) ||
                         (date == 20 && currentDate.getMonth() + 1 == 2) ||
-                        (date == 21 && currentDate.getMonth() + 1 == 2) ||
-                        (date == 22 && currentDate.getMonth() + 1 == 2) ||
-                        (date == 23 && currentDate.getMonth() + 1 == 2) ||
-                        (date == 24 && currentDate.getMonth() + 1 == 2)) && (
+                        (date == 21 && currentDate.getMonth() + 1 == 2)) && (
                         <img
                           src={`${
-                            date == 18 || date == 21 || date == 23 || date == 24
+                            date == 15 || date == 18 || date == 20 || date == 21
                               ? "img/soso.png"
-                              : date == 19 || date == 20 || date == 22
+                              : date == 16 || date == 17 || date == 19
                               ? "img/happy.png"
                               : ""
                           }`}

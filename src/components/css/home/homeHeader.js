@@ -20,7 +20,7 @@ export const DayNumber = styled.span`
 
 export const Ptext = styled.p`
   margin: 9px 0 0 25px;
-  width: 205px;
+  width: 210px;
   color: #363639;
   font-size: 12px;
 `;

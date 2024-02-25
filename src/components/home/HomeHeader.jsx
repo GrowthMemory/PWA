@@ -16,7 +16,7 @@ export default function HomeHeader() {
         회고 <s.DayNumber>{retrospectionNumber}</s.DayNumber>일차
       </s.Span>
       <s.Ptext>
-        {wiseSaying.txt} -{wiseSaying.author}-
+        언제나 현재에 집중할수 있다면 행복할것이다 -파울로 코엘료-
       </s.Ptext>
     </s.Div>
   );
