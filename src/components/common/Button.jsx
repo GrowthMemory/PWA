@@ -35,7 +35,7 @@ export default function Button(props) {
             agreement == 3 &&
             signUpStep == "CollectPersonalData"
           ) {
-            navigate("/Login");
+            navigate("/CreateName");
           }
           if (signUpStep == "CreateName") {
             navigate("/Home");

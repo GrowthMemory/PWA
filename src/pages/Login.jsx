@@ -1,10 +1,11 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import HeaderBox from "../components/common/header/HeaderBox";
 import { signInWithGoogle } from "../service/auth";
 import * as s from "../components/css/login";
 
 export default function Login() {
   const location = useLocation().pathname;
+  const navigate = useNavigate();
   return (
     <s.Div>
       <HeaderBox>
@@ -14,6 +15,7 @@ export default function Login() {
       <s.Btn
         onClick={() => {
           signInWithGoogle();
+          // navigate("/SignUp");
         }}
       >
         <s.GoogleIcon />
