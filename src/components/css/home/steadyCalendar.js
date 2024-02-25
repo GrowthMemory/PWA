@@ -25,6 +25,14 @@ export const CalenderBox = styled.div`
   display: flex;
   overflow-x: scroll;
   overflow-y: hidden;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #636366;
+    border-radius: 10px;
+  }
 
   .check {
     background-color: #5ac479;

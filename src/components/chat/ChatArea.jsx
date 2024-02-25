@@ -21,7 +21,7 @@ export default function ChatArea() {
       </ChatBot>
       {sendChat && (
         <UserChat>
-          <p>{message}</p>
+          <p>{message}</p>  
         </UserChat>
       )}
       {showAnswer && (

@@ -15,7 +15,7 @@ export default function ReportProvider(props) {
   const [feelingData, updateFeelingData] = useImmer([
     ["day", "num", "num", "num", "num"],
   ]);
-  const [retrospectionNum, setRetrospection] = useState(0);
+  const [retrospectionNum, setRetrospectionNum] = useState(0);
   const [currentStatusObj, setCurrentStatusObj] = useImmer({
     score: 46,
     text: "평균적인",
@@ -48,7 +48,7 @@ export default function ReportProvider(props) {
         feelingData,
         updateFeelingData,
         retrospectionNum,
-        setRetrospection,
+        setRetrospectionNum,
         currentStatusObj,
         setCurrentStatusObj,
         showChart,
@@ -62,15 +62,31 @@ export default function ReportProvider(props) {
   );
 }
 
+const end = new Date(
+  currentDate.getFullYear(),
+  currentDate.getMonth(),
+  currentDate.getDate() + 6
+);
+
 const defaultDate = {
   startDate: {
-    year: Number(currentDate.getFullYear().toString().substring(2, 4)),
-    month: Number("0" + (currentDate.getMonth() + 1)),
-    date: currentDate.getDate() - currentDate.getDay(),
+    year: currentDate.getFullYear(),
+    month: `${
+      currentDate.getMonth() < 10
+        ? "0" + (currentDate.getMonth() + 1)
+        : currentDate.getMonth() + 1
+    }`,
+    date: `${
+      currentDate.getDate() < 10
+        ? "0" + currentDate.getDate()
+        : currentDate.getDate()
+    }`,
   },
   endDate: {
-    year: Number(currentDate.getFullYear().toString().substring(2, 4)),
-    month: Number("0" + (currentDate.getMonth() + 1)),
-    date: currentDate.getDate() + (6 - currentDate.getDay()),
+    year: end.getFullYear(),
+    month: `${
+      end.getMonth() < 10 ? "0" + (end.getMonth() + 1) : end.getMonth() + 1
+    }`,
+    date: `${end.getDate() < 10 ? "0" + end.getDate() : end.getDate()}`,
   },
 };

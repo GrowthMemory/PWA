@@ -42,6 +42,7 @@ export default function HeaderText(props) {
               };
               let uid = getUID();
               registReview(uid, `${year}-${month}-${date}`, data);
+              navigate("/Calendar");
             }}
           />
         )}
