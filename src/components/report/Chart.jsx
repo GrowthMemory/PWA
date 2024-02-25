@@ -12,21 +12,31 @@ export default function ChartBox() {
     feelingData,
     updateFeelingData,
     retrospectionNum,
-    setRetrospection,
+    setRetrospectionNum,
     showChart,
+    selcetDate,
   } = useContext(ReportContext);
-
-  useEffect(() => {}, [currentCategory]);
 
   useEffect(() => {
     localStorage.setItem("visitedChart", "true");
     fetchFunc(
       updateLineData,
       updateFeelingData,
-      setRetrospection,
-      currentCategory
+      setRetrospectionNum,
+      currentCategory,
+      selcetDate
     );
   }, []);
+
+  useEffect(() => {
+    fetchFunc(
+      updateLineData,
+      updateFeelingData,
+      setRetrospectionNum,
+      currentCategory,
+      selcetDate
+    );
+  }, [selcetDate]);
 
   return (
     <s.Div>
@@ -34,7 +44,10 @@ export default function ChartBox() {
         기간 내, <span>{retrospectionNum}</span>번 회고 했어요
       </s.RetrospectionNumber>
       <s.Title>얼마나 만족스러운 회고를 했나요 ?</s.Title>
-      {currentCategory == "week" && showChart.week ? (
+      {(currentCategory == "week" && showChart.week && lineData.length == 7) ||
+      (currentCategory == "custom" &&
+        showChart.week &&
+        lineData.length >= 2) ? (
         <s.LineChart className="c1">
           <Chart
             chartType="LineChart"
@@ -42,7 +55,12 @@ export default function ChartBox() {
             options={O.lineOptions}
           />
         </s.LineChart>
-      ) : currentCategory == "month" && showChart.month ? (
+      ) : (currentCategory == "month" &&
+          showChart.month &&
+          lineData.length == 30) ||
+        (currentCategory == "custom" &&
+          showChart.month &&
+          lineData.length >= 2) ? (
         <s.LineChart className="c1">
           <Chart
             chartType="LineChart"
@@ -50,7 +68,12 @@ export default function ChartBox() {
             options={O.lineOptions}
           />
         </s.LineChart>
-      ) : currentCategory == "year" && showChart.year ? (
+      ) : (currentCategory == "year" &&
+          showChart.year &&
+          lineData.length == 365) ||
+        (currentCategory == "custom" &&
+          showChart.year &&
+          lineData.length >= 2) ? (
         <s.LineChart className="c1">
           <Chart
             chartType="LineChart"
@@ -62,7 +85,10 @@ export default function ChartBox() {
         <NoneChart />
       )}
 
-      {currentCategory == "week" && showChart.week ? (
+      {(currentCategory == "week" && showChart.week && lineData.length == 7) ||
+      (currentCategory == "custom" &&
+        showChart.week &&
+        lineData.length >= 2) ? (
         <s.ChartColor className="c2">
           <Chart
             chartType="CandlestickChart"
@@ -70,7 +96,12 @@ export default function ChartBox() {
             options={O.feelingOption}
           />
         </s.ChartColor>
-      ) : currentCategory == "month" && showChart.month ? (
+      ) : (currentCategory == "month" &&
+          showChart.month &&
+          lineData.length == 30) ||
+        (currentCategory == "custom" &&
+          showChart.month &&
+          lineData.length >= 2) ? (
         <s.ChartColor className="c2">
           <Chart
             chartType="CandlestickChart"
@@ -78,7 +109,12 @@ export default function ChartBox() {
             options={O.feelingOption}
           />
         </s.ChartColor>
-      ) : currentCategory == "year" && showChart.year ? (
+      ) : (currentCategory == "year" &&
+          showChart.year &&
+          lineData.length == 365) ||
+        (currentCategory == "custom" &&
+          showChart.year &&
+          lineData.length >= 2) ? (
         <s.ChartColor className="c2">
           <Chart
             chartType="CandlestickChart"
@@ -96,38 +132,51 @@ export default function ChartBox() {
 async function fetchFunc(
   updateLineData,
   updateFeelingData,
-  setRetrospection,
-  currentCategory
+  setRetrospectionNum,
+  currentCategory,
+  selcetDate
 ) {
   try {
     const response = await fetch("dumy/emotion_score.json");
     const data = await response.json();
     let dataArr = await data.data;
+    let startDate = selcetDate.startDate;
+    let endDate = selcetDate.endDate;
+
+    // console.log(selcetDate);
     await dataArr.forEach((datas, n) => {
-      let split = datas.index.split(" ");
-      updateLineData((data) => {
-        data.push([split[0], datas.emotion_score]);
-      });
-      updateFeelingData((data) => {
-        if (datas.emotion_score > 0) {
-          data.push([
-            n.toString(),
-            datas.emotion_score,
-            0,
-            datas.emotion_score,
-            0,
-          ]);
-        } else {
-          data.push([
-            n.toString(),
-            0,
-            0,
-            datas.emotion_score,
-            datas.emotion_score,
-          ]);
+      let split = datas.index.split("-");
+      if (split[0] >= startDate.year && split[0] <= endDate.year) {
+        if (split[1] >= startDate.month && split[1] <= endDate.month) {
+          if (split[2] >= startDate.date && split[2] <= endDate.date) {
+            updateLineData((data) => {
+              data.push([datas.index, datas.emotion_score]);
+            });
+
+            updateFeelingData((data) => {
+              if (datas.emotion_score > 0) {
+                data.push([
+                  n.toString(),
+                  datas.emotion_score,
+                  0,
+                  datas.emotion_score,
+                  0,
+                ]);
+              } else {
+                data.push([
+                  n.toString(),
+                  0,
+                  0,
+                  datas.emotion_score,
+                  datas.emotion_score,
+                ]);
+              }
+            });
+          }
         }
-      });
-      setRetrospection(dataArr.length);
+      }
+
+      setRetrospectionNum(dataArr.length);
     });
   } catch (err) {
     console.log(err);

@@ -18,6 +18,7 @@ export default function Category() {
     setShowCalendar,
     clicked,
     showChart,
+    updateClicked,
     setShowChart,
     data,
     setData,
@@ -55,11 +56,10 @@ export default function Category() {
           Func.dateFunc(setCurrentCategory, updateSelctDate);
           setShowCategoryBtn(true);
           setShowCalendar(false);
-          if (data.length >= 7) {
-            setShowChart((data) => {
-              data.week = true;
-            });
-          }
+          setShowChart((data) => {
+            data.week = true;
+          });
+          updateClicked((date) => (date = []));
         }}
         style={
           currentCategory == "week"
@@ -76,11 +76,10 @@ export default function Category() {
           Func.monthFunc(setCurrentCategory, updateSelctDate);
           setShowCategoryBtn(true);
           setShowCalendar(false);
-          if (data.length >= 30) {
-            setShowChart((data) => {
-              data.month = true;
-            });
-          }
+          setShowChart((data) => {
+            data.month = true;
+          });
+          updateClicked((date) => (date = []));
         }}
         style={
           currentCategory == "month"
@@ -97,11 +96,10 @@ export default function Category() {
           Func.yearFunc(setCurrentCategory, updateSelctDate);
           setShowCategoryBtn(true);
           setShowCalendar(false);
-          if (data.length >= 365) {
-            setShowChart((data) => {
-              data.year = true;
-            });
-          }
+          setShowChart((data) => {
+            data.year = true;
+          });
+          updateClicked((date) => (date = []));
         }}
         style={
           currentCategory == "year"
@@ -135,6 +133,7 @@ export default function Category() {
         <s.CurrentDate
           onClick={() => {
             setShowCalendar((prev) => !prev);
+            updateClicked((date) => (date = []));
           }}
           style={
             currentCategory == "custom"

@@ -23,13 +23,17 @@ export default function ReportCalendar(props) {
     useContext(WriteContext);
 
   const location = useLocation().pathname;
+
   const dates = CalendarFunction(currentDate, nextMonth, prevMonth, location);
+
   let current = new Date(
     currentDate.getFullYear(),
     currentDate.getMonth() + prevMonth,
     0
   );
+
   const days = ["일", "월", "화", "수", "목", "금", "토"];
+
   useEffect(() => {
     if (location == "/Report") {
       if (clicked.length == 2) {
@@ -139,8 +143,8 @@ export default function ReportCalendar(props) {
                       }`;
 
                       if (location == "/Report") {
-                        if (clicked.length != 2) {
-                          updateClicked((date) => {
+                        updateClicked((date) => {
+                          if (clicked.length != 2) {
                             if (n == 0 && e.target.innerText > 15) {
                               date.push(prev);
                             } else if (n >= 4 && e.target.innerText < 15) {
@@ -148,27 +152,25 @@ export default function ReportCalendar(props) {
                             } else {
                               date.push(now);
                             }
-                            date.sort((a, b) => a - b);
-                          });
-                        }
-                        if (clicked.length == 2) {
-                          updateClicked((date) => {
-                            if (n == 0 && e.target.innerText > 15) {
-                              if (date.indexOf(prev) != -1) {
-                                date = date.filter((x) => x != prev);
-                              }
-                            } else if (n >= 4 && e.target.innerText < 15) {
-                              if (date.indexOf(next) != -1) {
-                                date = date.filter((x) => x != next);
-                              }
-                            } else {
-                              if (date.indexOf(now) != -1) {
-                                date = date.filter((x) => x != now);
+                          }
+                          let start = date[0] ? date[0].split(".") : null;
+                          let end = date[1] ? date[1].split(".") : null;
+                          if (start != null && end != null) {
+                            if (start[1] > end[1]) {
+                              let temp = start;
+                              start = end;
+                              end = temp;
+                            } else if (start[1] == end[1]) {
+                              if (start[2] > end[2]) {
+                                let temp = start;
+                                start = end;
+                                end = temp;
                               }
                             }
-                            return date;
-                          });
-                        }
+                            date[0] = start.join(".");
+                            date[1] = end.join(".");
+                          }
+                        });
                       }
                       if (location == "/Write") {
                         updateRetrospectionData((data) => {
