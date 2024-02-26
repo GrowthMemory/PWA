@@ -1,25 +1,27 @@
-import { useContext, useEffect } from "react";
-import Terms from "../common/Terms";
-import { SignUpContext } from "../context/context";
-import * as s from "../css/collectPersonalDate/termsBox";
-export default function TermsBox(props) {
-  const { isChecked, setSignUpStep, signUpStep } = useContext(SignUpContext);
+import { useContext } from "react";
+import { MyPageContext } from "../../context/context";
+import { FROMPAGE, INFORMATIONTITLE } from "../key";
+import * as s from "../../css/common/information";
+import { useNavigate } from "react-router-dom";
 
-  useEffect(() => {
-    setSignUpStep("CollectPersonalData");
-  }, []);
+export default function InformationText() {
+  const navigate = useNavigate();
+  const informationTitle = localStorage.getItem(INFORMATIONTITLE);
+  const fromPage = localStorage.getItem(FROMPAGE);
   return (
-    <s.Box>
-      <Terms text={isChecked[0].text} key={isChecked[0].text} num={0}>
-        {text.service}
-      </Terms>
-      <Terms text={isChecked[1].text} key={isChecked[1].text} num={1}>
-        {props.children}
-      </Terms>
-      <Terms text={isChecked[2].text} key={isChecked[2].text} num={2}>
-        {props.children}
-      </Terms>
-    </s.Box>
+    <s.Div>
+      <s.InformationText>
+        {informationTitle == "서비스 이용 약관" && text.service}
+      </s.InformationText>
+      <s.Button
+        onClick={() => {
+          if (fromPage == "/MyPage") navigate("/MyPage");
+          else navigate("/SignUp");
+        }}
+      >
+        확인
+      </s.Button>
+    </s.Div>
   );
 }
 
@@ -27,7 +29,7 @@ const text = {
   service: (
     <p style={{ maxWidth: "100%", maxHeight: "40%" }}>
       <br />
-      <b>제 1 장 총 칙</b>
+      <b>제 1 장 총 칙</b> <br />
       <br />
       제 1 조 (목적)이 약관은 GrowthMemory(이하 &quot;사이트&quot;라 합니다)에서
       제공하는 인터넷서비스(이하 &quot;서비스&quot;라 합니다)의 이용 조건 및

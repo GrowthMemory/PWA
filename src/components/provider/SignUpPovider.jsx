@@ -30,7 +30,7 @@ export default function SignUpProvider(props) {
 
 let checked = [
   {
-    text: "이용약관",
+    text: "서비스 이용 약관",
     checked: false,
   },
   {
