@@ -45,5 +45,5 @@ export const TextBox = styled.div`
   border: 1px solid #e3e3e3;
   font-size: 11px;
   line-height: 17px;
-  overflow: hidden;
+  overflow: auto;
 `;
