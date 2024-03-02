@@ -11,7 +11,7 @@ export default function PageBlock(props) {
       onClick={(e) => {
         localStorage.setItem(INFORMATIONTITLE, e.target.innerText);
         localStorage.setItem(FROMPAGE, location);
-        navigate("/Information");
+        if (props.readOnly == undefined) navigate("/Information");
       }}
     >
       {props.children}

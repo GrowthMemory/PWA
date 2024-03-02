@@ -51,11 +51,9 @@ export default function Home() {
             }}
           >
             <s.LeftIcon />
-            {/*여기 아이콘*/}
             {todayRetrospection
               ? "오늘의 회고를 작성했어요 :)"
               : "오늘의 회고를 작성해주세요"}
-
             <s.RightIcon />
           </s.Btn>
           <s.CalendarDiv>
