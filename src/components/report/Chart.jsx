@@ -4,6 +4,8 @@ import { HomeContext, ReportContext } from "../context/context";
 import * as O from "./chartOption";
 import * as s from "../css/report/chart";
 import NoneChart from "./NoneChart";
+import { getUID } from "../../service/auth";
+import { ReadReview, getUserAllReviews } from "../../service/db";
 export default function ChartBox() {
   const {
     lineData,
@@ -19,23 +21,17 @@ export default function ChartBox() {
 
   useEffect(() => {
     localStorage.setItem("visitedChart", "true");
-    fetchFunc(
-      updateLineData,
-      updateFeelingData,
-      setRetrospectionNum,
-      currentCategory,
-      selcetDate
-    );
-  }, []);
-
-  useEffect(() => {
-    fetchFunc(
-      updateLineData,
-      updateFeelingData,
-      setRetrospectionNum,
-      currentCategory,
-      selcetDate
-    );
+    let uid = getUID();
+    if (uid) {
+      getEmotionScore(
+        uid,
+        selcetDate,
+        updateLineData,
+        updateFeelingData,
+        setRetrospectionNum,
+        lineData
+      );
+    }
   }, [selcetDate]);
 
   return (
@@ -129,56 +125,74 @@ export default function ChartBox() {
   );
 }
 
-async function fetchFunc(
+async function getEmotionScore(
+  uid,
+  selcetDate,
   updateLineData,
   updateFeelingData,
   setRetrospectionNum,
-  currentCategory,
-  selcetDate
+  lineData
 ) {
-  try {
-    const response = await fetch("dumy/emotion_score.json");
-    const data = await response.json();
-    let dataArr = await data.data;
-    let startDate = selcetDate.startDate;
-    let endDate = selcetDate.endDate;
+  let temp = await getUserAllReviews(uid);
 
-    // console.log(selcetDate);
-    await dataArr.forEach((datas, n) => {
-      let split = datas.index.split("-");
-      if (split[0] >= startDate.year && split[0] <= endDate.year) {
-        if (split[1] >= startDate.month && split[1] <= endDate.month) {
-          if (split[2] >= startDate.date && split[2] <= endDate.date) {
-            updateLineData((data) => {
-              data.push([datas.index, datas.emotion_score]);
-            });
-
-            updateFeelingData((data) => {
-              if (datas.emotion_score > 0) {
-                data.push([
-                  n.toString(),
-                  datas.emotion_score,
-                  0,
-                  datas.emotion_score,
-                  0,
-                ]);
-              } else {
-                data.push([
-                  n.toString(),
-                  0,
-                  0,
-                  datas.emotion_score,
-                  datas.emotion_score,
-                ]);
-              }
-            });
-          }
-        }
-      }
-
-      setRetrospectionNum(dataArr.length);
-    });
-  } catch (err) {
-    console.log(err);
+  if (lineData.length > 1) {
+    updateLineData((x) => (x = [["date", "emotional figures"]]));
+    updateFeelingData((x) => (x = [["day", "num", "num", "num", "num"]]));
   }
+
+  let start = new Date(
+    selcetDate.startDate.year,
+    selcetDate.startDate.month - 1,
+    selcetDate.startDate.date
+  );
+  let end = new Date(
+    selcetDate.endDate.year,
+    selcetDate.endDate.month - 1,
+    selcetDate.endDate.date
+  );
+
+  let cnt = Math.abs(start - end);
+  cnt = Math.ceil(cnt / (1000 * 60 * 60 * 24));
+
+  let dataLength = 0;
+  for (let i = 0; i <= cnt; i++) {
+    let date = new Date(
+      selcetDate.startDate.year,
+      selcetDate.startDate.month - 1,
+      Number(selcetDate.startDate.date) + i
+    );
+    let dateText = `${date.getFullYear() - 2000}-${
+      date.getMonth() + 1 < 10
+        ? "0" + (date.getMonth() + 1)
+        : date.getMonth() + 1
+    }-${date.getDate() < 10 ? "0" + date.getDate() : date.getDate()}`;
+
+    if (temp[dateText]) {
+      dataLength++;
+      updateLineData((data) => {
+        data.push([dateText, temp[dateText]["mean_score"]]);
+      });
+
+      updateFeelingData((data) => {
+        if (temp[dateText]["mean_score"] > 0) {
+          data.push([
+            i.toString(),
+            temp[dateText]["mean_score"],
+            0,
+            temp[dateText]["mean_score"],
+            0,
+          ]);
+        } else {
+          data.push([
+            i.toString(),
+            0,
+            0,
+            temp[dateText]["mean_score"],
+            temp[dateText]["mean_score"],
+          ]);
+        }
+      });
+    }
+  }
+  setRetrospectionNum(dataLength);
 }
