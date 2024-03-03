@@ -122,6 +122,7 @@ export default function CalendarFrame() {
 async function getEmoji(uid, updateEmoji) {
   let temp = (await getUserAllReviews(uid)) ?? null;
   let key = Object.keys(temp);
+  // console.log(temp);
 
   updateEmoji((data) => {
     let emoji = "";
@@ -140,6 +141,7 @@ async function getEmoji(uid, updateEmoji) {
       data.push({
         date: x,
         emoji: emoji,
+        isAnalyze: temp[x].isAnalyze,
       });
     });
   });
@@ -151,8 +153,9 @@ function emojiFunc(date, emoji, currentDate) {
       ? "0" + (currentDate.getMonth() + 1)
       : currentDate.getMonth() + 1
   }-${date < 10 ? "0" + date : date}`;
+
   for (let i = 0; i < emoji.length; i++) {
-    if (emoji[i].date == dateText) {
+    if (emoji[i].date == dateText && emoji[i].isAnalyze) {
       return <img src={`img/${emoji[i].emoji}.png`} alt="" />;
     }
   }
