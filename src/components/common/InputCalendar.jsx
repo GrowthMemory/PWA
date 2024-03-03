@@ -215,10 +215,5 @@ function setWriteDate(data, selectDate) {
   let split = selectDate.split(".");
   data.date.year = split[0];
   data.date.month = split[1];
-
-  if (split[2][0] == 0) {
-    data.date.date = split[2].substring(1, 2);
-  } else {
-    data.date.date = split[2];
-  }
+  data.date.date = split[2];
 }
