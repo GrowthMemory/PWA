@@ -6,6 +6,8 @@ import { SELECTDATE } from "../common/key";
 import { useLocation } from "react-router-dom";
 import * as s from "../css/calendar/calendarFram";
 import SelectMonth from "./SelectMonth";
+import { ReadReview, getUserAllReviews } from "../../service/db";
+import { getUID } from "../../service/auth";
 export default function CalendarFrame() {
   const {
     currentDate,
@@ -16,13 +18,21 @@ export default function CalendarFrame() {
     setShowModal,
     showCalendar,
     setShowCalendar,
-    modalText,
     setModalText,
+    emoji,
+    updateEmoji,
   } = useContext(CalendarContext);
   const { retrospectionData } = useContext(WriteContext);
   const location = useLocation().pathname;
   const dates = CalendarFunction(currentDate, nextMonth, prevMonth, location);
   const days = ["일", "월", "화", "수", "목", "금", "토"];
+
+  useEffect(() => {
+    let uid = getUID();
+    if (uid) {
+      getEmoji(uid, updateEmoji);
+    }
+  }, []);
 
   return (
     <s.Div>
@@ -91,41 +101,10 @@ export default function CalendarFrame() {
                   >
                     <div
                       onClick={() => {
-                        setModalText(() => {
-                          if (
-                            (date == 15 && currentDate.getMonth() + 1 == 2) ||
-                            (date == 16 && currentDate.getMonth() + 1 == 2) ||
-                            (date == 17 && currentDate.getMonth() + 1 == 2) ||
-                            (date == 18 && currentDate.getMonth() + 1 == 2) ||
-                            (date == 19 && currentDate.getMonth() + 1 == 2) ||
-                            (date == 20 && currentDate.getMonth() + 1 == 2) ||
-                            (date == 21 && currentDate.getMonth() + 1 == 2)
-                          ) {
-                            return "회고를 보시겠어요?";
-                          } else {
-                            return "회고를 작성하시겠어요?";
-                          }
-                        });
+                        modalTextFunc(date, currentDate, setModalText, emoji);
                       }}
                     >
-                      {((date == 15 && currentDate.getMonth() + 1 == 2) ||
-                        (date == 16 && currentDate.getMonth() + 1 == 2) ||
-                        (date == 17 && currentDate.getMonth() + 1 == 2) ||
-                        (date == 18 && currentDate.getMonth() + 1 == 2) ||
-                        (date == 19 && currentDate.getMonth() + 1 == 2) ||
-                        (date == 20 && currentDate.getMonth() + 1 == 2) ||
-                        (date == 21 && currentDate.getMonth() + 1 == 2)) && (
-                        <img
-                          src={`${
-                            date == 15 || date == 18 || date == 20 || date == 21
-                              ? "img/soso.png"
-                              : date == 16 || date == 17 || date == 19
-                              ? "img/happy.png"
-                              : ""
-                          }`}
-                          alt=""
-                        />
-                      )}
+                      {emojiFunc(date, emoji, currentDate)}
                     </div>
                     <span>{date}</span>
                   </td>
@@ -138,4 +117,63 @@ export default function CalendarFrame() {
       {showModal && <GoingRetrospection />}
     </s.Div>
   );
+}
+
+async function getEmoji(uid, updateEmoji) {
+  let temp = (await getUserAllReviews(uid)) ?? null;
+  let key = Object.keys(temp);
+  // console.log(temp);
+
+  updateEmoji((data) => {
+    let emoji = "";
+    key.forEach((x) => {
+      if (temp[x]["mean_score"] >= -50 && temp[x]["mean_score"] < -30) {
+        emoji = "verySad";
+      } else if (temp[x]["mean_score"] >= -30 && temp[x]["mean_score"] < -10) {
+        emoji = "sad";
+      } else if (temp[x]["mean_score"] >= -10 && temp[x]["mean_score"] < 10) {
+        emoji = "soso";
+      } else if (temp[x]["mean_score"] >= 10 && temp[x]["mean_score"] < 30) {
+        emoji = "happy";
+      } else if (temp[x]["mean_score"] >= 30 && temp[x]["mean_score"] <= 50) {
+        emoji = "veryHappy";
+      }
+      data.push({
+        date: x,
+        emoji: emoji,
+        isAnalyze: temp[x].isAnalyze,
+      });
+    });
+  });
+}
+
+function emojiFunc(date, emoji, currentDate) {
+  let dateText = `${currentDate.getFullYear() - 2000}-${
+    currentDate.getMonth() + 1 < 10
+      ? "0" + (currentDate.getMonth() + 1)
+      : currentDate.getMonth() + 1
+  }-${date < 10 ? "0" + date : date}`;
+
+  for (let i = 0; i < emoji.length; i++) {
+    if (emoji[i].date == dateText && emoji[i].isAnalyze) {
+      return <img src={`img/${emoji[i].emoji}.png`} alt="" />;
+    }
+  }
+}
+
+function modalTextFunc(date, currentDate, setModalText, emoji) {
+  let dateText = `${currentDate.getFullYear() - 2000}-${
+    currentDate.getMonth() + 1 < 10
+      ? "0" + (currentDate.getMonth() + 1)
+      : currentDate.getMonth() + 1
+  }-${date < 10 ? "0" + date : date}`;
+
+  for (let i = 0; i < emoji.length; i++) {
+    if (emoji[i].date == dateText) {
+      setModalText("회고를 보러 가시겠어요?");
+      break;
+    } else {
+      setModalText("회고를 작성하시겠어요?");
+    }
+  }
 }

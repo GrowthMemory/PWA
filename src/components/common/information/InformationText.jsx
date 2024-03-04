@@ -1,25 +1,30 @@
-import { useContext, useEffect } from "react";
-import Terms from "../common/Terms";
-import { SignUpContext } from "../context/context";
-import * as s from "../css/collectPersonalDate/termsBox";
-export default function TermsBox(props) {
-  const { isChecked, setSignUpStep, signUpStep } = useContext(SignUpContext);
+import { useContext } from "react";
+import { MyPageContext } from "../../context/context";
+import { FROMPAGE, INFORMATIONTITLE } from "../key";
+import * as s from "../../css/common/information";
+import { useNavigate } from "react-router-dom";
 
-  useEffect(() => {
-    setSignUpStep("CollectPersonalData");
-  }, []);
+export default function InformationText() {
+  const navigate = useNavigate();
+  const informationTitle = localStorage.getItem(INFORMATIONTITLE);
+  const fromPage = localStorage.getItem(FROMPAGE);
   return (
-    <s.Box>
-      <Terms text={isChecked[0].text} key={isChecked[0].text} num={0}>
-        {text.service}
-      </Terms>
-      <Terms text={isChecked[1].text} key={isChecked[1].text} num={1}>
-        {text.personal}
-      </Terms>
-      <Terms text={isChecked[2].text} key={isChecked[2].text} num={2}>
-        {props.children}
-      </Terms>
-    </s.Box>
+    <s.Div>
+      <s.InformationText>
+        {informationTitle == "서비스 이용 약관" && text.service}
+        {(informationTitle == "개인정보 수집 및 이용" ||
+          informationTitle == "개인정보 처리방침") &&
+          text.personal}
+      </s.InformationText>
+      <s.Button
+        onClick={() => {
+          if (fromPage == "/MyPage") navigate("/MyPage");
+          else navigate("/SignUp");
+        }}
+      >
+        확인
+      </s.Button>
+    </s.Div>
   );
 }
 
@@ -172,7 +177,8 @@ const text = {
   ),
   personal: (
     <p style={{ maxWidth: "100%", maxHeight: "40%" }}>
-      <br />제 4 장 서비스 제공 및 이용
+      <br />
+      <b>제 4 장 서비스 제공 및 이용</b>
       <br />
       <br />
       제 10 조 (회원 아이디(Email)와 비밀번호 관리에 대한 회원의 의무)①

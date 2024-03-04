@@ -31,7 +31,11 @@ export default function Navigation(props) {
         onClick={() => navigate("/ChatMain")}
       />
       <IoMdSettings
-        style={location == "/MyPage" ? { color: "#5ac479" } : ""}
+        style={
+          location == "/MyPage" || location == "/Information"
+            ? { color: "#5ac479" }
+            : ""
+        }
         onClick={() => navigate("/MyPage")}
       />
     </s.Div>

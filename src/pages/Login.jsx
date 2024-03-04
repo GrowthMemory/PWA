@@ -15,7 +15,6 @@ export default function Login() {
       <s.Btn
         onClick={() => {
           signInWithGoogle();
-          // navigate("/SignUp");
         }}
       >
         <s.GoogleIcon />

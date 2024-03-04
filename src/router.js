@@ -12,6 +12,7 @@ import Report from "./pages/Report";
 import MyPage from "./pages/MyPage";
 import Chat from "./pages/Chat";
 import ChatMain from "./components/chat/ChatMain";
+import Information from "./components/common/information/Information";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
   {
     path: "/Chat",
     element: <Chat />,
+  },
+  {
+    path: "/Information",
+    element: <Information />,
   },
 ]);
 

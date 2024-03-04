@@ -30,7 +30,7 @@ export default function MyPage() {
             <BsPersonExclamation />
             <Span>개인정보 수집 및 이용</Span>
           </PageBlock>
-          <PageBlock>
+          <PageBlock readOnly={true}>
             <GrPowerCycle />
             <Span>버전 정보</Span>
             <CurrentVersion>0.0.1</CurrentVersion>

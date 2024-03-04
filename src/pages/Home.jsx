@@ -13,6 +13,7 @@ import { getUID } from "../service/auth";
 export default function Home() {
   const navigate = useNavigate();
   const [todayRetrospection, setTodayRetrospection] = useState(false);
+  const [todayEmoji, setTodayEmoji] = useState(null);
   const nowDate = new Date();
   const year = nowDate.getFullYear() - 2000;
   const month = nowDate.getMonth() + 1;
@@ -25,21 +26,9 @@ export default function Home() {
     setTodayRetrospection(false);
     localStorage.removeItem(SELECTDATE);
     let uid = getUID();
-    let func = async () => {
-      let temp = await getUserAllReviews(uid);
-      if (temp) {
-        let key = Object.keys(temp);
-        for (let i = 0; i < key.length; i++) {
-          if (currentDate == key[i]) {
-            setTodayRetrospection(true);
-            break;
-          }
-        }
-      }
-    };
-    func();
-  }, []);
 
+    getAllData(uid, setTodayRetrospection, currentDate, setTodayEmoji);
+  }, []);
   return (
     <s.HomeBox>
       <HomeProvider>
@@ -50,12 +39,14 @@ export default function Home() {
               navigate("/Write");
             }}
           >
-            <s.LeftIcon />
-            {/*여기 아이콘*/}
+            {todayEmoji != null ? (
+              <img src={`img/${todayEmoji}.png`} />
+            ) : (
+              <s.LeftIcon />
+            )}
             {todayRetrospection
               ? "오늘의 회고를 작성했어요 :)"
               : "오늘의 회고를 작성해주세요"}
-
             <s.RightIcon />
           </s.Btn>
           <s.CalendarDiv>
@@ -80,4 +71,50 @@ export default function Home() {
       </HomeProvider>
     </s.HomeBox>
   );
+}
+
+async function getAllData(
+  uid,
+  setTodayRetrospection,
+  currentDate,
+  setTodayEmoji
+) {
+  let temp = await getUserAllReviews(uid);
+  if (temp) {
+    let key = Object.keys(temp);
+    for (let i = 0; i < key.length; i++) {
+      if (currentDate == key[i]) {
+        let emoji = null;
+        if (temp[key[i]].isAnalyze) {
+          if (temp[key[i]].mean_score >= -50 && temp[key[i]].mean_score < -30) {
+            emoji = "verySad";
+          } else if (
+            temp[key[i]].mean_score >= -30 &&
+            temp[key[i]].mean_score < -10
+          ) {
+            emoji = "sad";
+          } else if (
+            temp[key[i]].mean_score >= -10 &&
+            temp[key[i]].mean_score < 10
+          ) {
+            emoji = "soso";
+          } else if (
+            temp[key[i]].mean_score >= 10 &&
+            temp[key[i]].mean_score < 30
+          ) {
+            emoji = "happy";
+          } else if (
+            temp[key[i]].mean_score >= 30 &&
+            temp[key[i]].mean_score <= 50
+          ) {
+            emoji = "veryHappy";
+          }
+        }
+        setTodayEmoji(emoji);
+
+        setTodayRetrospection(true);
+        break;
+      }
+    }
+  }
 }

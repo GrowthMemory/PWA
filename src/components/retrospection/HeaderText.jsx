@@ -9,6 +9,7 @@ export default function HeaderText(props) {
   const { retrospectionData, checkRetrospection } = useContext(WriteContext);
   const navigate = useNavigate();
   let month = retrospectionData.date.month;
+  let date = retrospectionData.date.date;
 
   return (
     <>
@@ -23,7 +24,7 @@ export default function HeaderText(props) {
           }}
         >
           {month[0] == 0 ? month.substring(1, 3) : month}월
-          {retrospectionData.date.date}
+          {date[0] == 0 ? date.substring(1, 3) : date}
           일의 회고
         </span>
         <s.CalendarBtn />
@@ -42,7 +43,7 @@ export default function HeaderText(props) {
               };
               let uid = getUID();
               registReview(uid, `${year}-${month}-${date}`, data);
-              navigate("/Calendar");
+              props.setShowModal(true);
             }}
           />
         )}
