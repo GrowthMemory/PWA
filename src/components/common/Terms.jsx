@@ -9,13 +9,7 @@ export default function Terms(props) {
   const navigate = useNavigate();
   const location = useLocation().pathname;
   return (
-    <s.Box
-      onClick={(e) => {
-        localStorage.setItem(INFORMATIONTITLE, props.text);
-        localStorage.setItem(FROMPAGE, location);
-        navigate("/InforMation");
-      }}
-    >
+    <s.Box>
       <s.Header checked={isChecked[props.num].checked}>
         <s.CheckIcon
           checked={isChecked[props.num].checked}
@@ -33,7 +27,15 @@ export default function Terms(props) {
         <span>{props.text}</span>
         <s.Essential>{"(필수)"}</s.Essential>
       </s.Header>
-      <s.TextBox>{props.children}</s.TextBox>
+      <s.TextBox
+        onClick={(e) => {
+          localStorage.setItem(INFORMATIONTITLE, props.text);
+          localStorage.setItem(FROMPAGE, location);
+          navigate("/InforMation");
+        }}
+      >
+        {props.children}
+      </s.TextBox>
     </s.Box>
   );
 }
