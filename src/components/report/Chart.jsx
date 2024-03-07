@@ -17,6 +17,7 @@ export default function ChartBox() {
     setRetrospectionNum,
     showChart,
     selcetDate,
+    setCurrentStatusObj,
   } = useContext(ReportContext);
 
   useEffect(() => {
@@ -29,7 +30,8 @@ export default function ChartBox() {
         updateLineData,
         updateFeelingData,
         setRetrospectionNum,
-        lineData
+        lineData,
+        setCurrentStatusObj
       );
     }
   }, [selcetDate]);
@@ -131,7 +133,8 @@ async function getEmotionScore(
   updateLineData,
   updateFeelingData,
   setRetrospectionNum,
-  lineData
+  lineData,
+  setCurrentStatusObj
 ) {
   let temp = await getUserAllReviews(uid);
 
@@ -155,6 +158,7 @@ async function getEmotionScore(
   cnt = Math.ceil(cnt / (1000 * 60 * 60 * 24));
 
   let dataLength = 0;
+  let sum = 0;
   for (let i = 0; i <= cnt; i++) {
     let date = new Date(
       selcetDate.startDate.year,
@@ -168,6 +172,7 @@ async function getEmotionScore(
     }-${date.getDate() < 10 ? "0" + date.getDate() : date.getDate()}`;
 
     if (temp[dateText]) {
+      sum += temp[dateText]["mean_score"];
       dataLength++;
       updateLineData((data) => {
         data.push([dateText, temp[dateText]["mean_score"]]);
@@ -194,5 +199,15 @@ async function getEmotionScore(
       });
     }
   }
+
+  let emptionText = "";
+  if (sum < -25) emptionText = "불안정적인";
+  else if (sum < 25) emptionText = "평균적인";
+  else if (sum <= 50) emptionText = "안정적인";
+
+  setCurrentStatusObj((data) => {
+    data.score = Math.round(sum);
+    data.text = emptionText;
+  });
   setRetrospectionNum(dataLength);
 }
