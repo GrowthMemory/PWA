@@ -1,9 +1,13 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ReportContext } from "../context/context";
 import * as s from "../css/report/currentStatus";
+import { getUID } from "../../service/auth";
+import { ReadReview, getUserAllReviews } from "../../service/db";
 
 export default function CurrentStatus() {
-  const { currentStatusObj, setCurrentStatusObj } = useContext(ReportContext);
+  const { currentStatusObj, setCurrentStatusObj, selcetDate, lineData } =
+    useContext(ReportContext);
+
   return (
     <s.Div>
       <s.Title>현재 나의 상태는 이래요!</s.Title>
@@ -12,8 +16,8 @@ export default function CurrentStatus() {
           type="range"
           id="volume"
           name="volume"
-          min="0"
-          max="100"
+          min="-50"
+          max="50"
           value={currentStatusObj.score}
           readOnly
         />
